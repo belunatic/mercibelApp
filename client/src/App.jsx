@@ -1,5 +1,4 @@
 // client/src/App.js
-import { useState } from "react";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import { UseAuthContext } from "./context/AuthContext";
