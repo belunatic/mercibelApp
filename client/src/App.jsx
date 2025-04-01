@@ -4,7 +4,7 @@ import Login from "./components/Login";
 import { UseAuthContext } from "./context/AuthContext";
 
 const App = () => {
-  const { loggedInUser, handleLogout } = UseAuthContext();
+  const { loggedInUser, handleLogout, showRegister } = UseAuthContext();
 
   return (
     <div className="flex min-h-screen w-full">
@@ -21,10 +21,7 @@ const App = () => {
               alt="Mercibel Production Logo"
             />
           </div>
-          <div>
-            <Register />
-            <Login />
-          </div>
+          <div>{showRegister ? <Register /> : <Login />}</div>
         </div>
       )}
     </div>
