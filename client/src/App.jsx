@@ -4,9 +4,12 @@ import { UseAuthContext } from "./context/AuthContext";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import NavBar from "./components/NavBar";
+import Dashboard from "./assets/pages/Dashboard";
+import Products from "./assets/pages/Products";
+import Clients from "./assets/pages/Clients";
 
 const App = () => {
-  const { loggedInUser, handleLogout, showRegister } = UseAuthContext();
+  const { loggedInUser, showRegister } = UseAuthContext();
 
   return (
     <div className="flex min-h-screen w-full">
@@ -14,10 +17,11 @@ const App = () => {
         <div className="flex w-full flex-col">
           <NavBar />
           <div>
-            <div>
-              <p>Welcome {loggedInUser.username}</p>
-              <button onClick={handleLogout}>Logout</button>
-            </div>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/about" element={<Clients />} />
+            </Routes>
           </div>
         </div>
       ) : (
