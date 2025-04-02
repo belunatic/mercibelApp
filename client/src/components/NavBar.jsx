@@ -22,7 +22,7 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
-  const { loggedInUser, handleLogout, showRegister } = UseAuthContext();
+  const { loggedInUser, handleLogout } = UseAuthContext();
   return (
     <Disclosure as="nav" className="bg-gray-800">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
