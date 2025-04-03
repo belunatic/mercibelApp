@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const logger = require("morgan");
 const authRoute = require("./routes/auth");
+const productRoute = require("./routes/products");
 const connectDB = require("./config/database");
 const { errorHandler } = require("./middleware/errorMiddleware");
 const { ensureAuth } = require("./middleware/authMiddleware");
@@ -20,6 +21,7 @@ app.use(errorHandler);
 connectDB();
 
 app.use("/user", authRoute);
+app.use("/products", productRoute);
 
 app.listen(process.env.PORT, () => {
 	console.log("let get this party started 🐯");
