@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { UseAuthContext } from "../../context/AuthContext";
 import axios from "axios";
-import "../css/style.css";
+import "../../css/style.css";
 
 const Login = () => {
   const { setLoggedInUser, setShowRegister } = UseAuthContext();

@@ -1,7 +1,7 @@
 // client/src/components/Register.js
 import React, { useState } from "react";
 import axios from "axios";
-import "../css/style.css";
+import "../../css/style.css";
 import { UseAuthContext } from "../../context/AuthContext";
 
 const Register = () => {
