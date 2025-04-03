@@ -1,8 +1,8 @@
 // client/src/App.js
 import { Routes, Route } from "react-router-dom";
 import { UseAuthContext } from "./context/AuthContext";
-import Register from "./components/Register";
-import Login from "./components/Login";
+import Register from "./assets/pages/Register";
+import Login from "./assets/pages/Login";
 import NavBar from "./components/NavBar";
 import Dashboard from "./assets/pages/Dashboard";
 import Products from "./assets/pages/Products";
