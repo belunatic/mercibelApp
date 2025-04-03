@@ -5,8 +5,9 @@ import Register from "./assets/pages/Register";
 import Login from "./assets/pages/Login";
 import NavBar from "./components/NavBar";
 import Dashboard from "./assets/pages/Dashboard";
-import Products from "./assets/pages/Products";
+import Products from "./assets/pages/Products/Products";
 import Clients from "./assets/pages/Clients";
+import AddProduct from "./assets/pages/Products/AddProduct";
 
 const App = () => {
   const { loggedInUser, showRegister } = UseAuthContext();
@@ -19,7 +20,10 @@ const App = () => {
           <div>
             <Routes>
               <Route exact path="/" element={<Dashboard />} />
+              {/* Products Routes */}
               <Route path="/products" element={<Products />} />
+              <Route path="/addProduct" element={<AddProduct />} />
+              {/* end of Products routes */}
               <Route path="/clients" element={<Clients />} />
               <Route path="/login" element={<Login />} />
             </Routes>
