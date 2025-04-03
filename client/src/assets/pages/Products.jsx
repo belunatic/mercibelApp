@@ -8,7 +8,7 @@ const Products = () => {
     const getProducts = async () => {
       try {
         const res = await axios.get("http://localhost:5000/products/");
-        console.log("this is the result", res.send);
+        console.log("this is the result", res);
       } catch (err) {
         console.log(err);
       }
