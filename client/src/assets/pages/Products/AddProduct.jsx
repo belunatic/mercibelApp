@@ -74,3 +74,7 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
+
+/* 
+form taken from: https://tailwindflex.com/@sophia-baker/form-for-editing-items
+*/
