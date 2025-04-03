@@ -6,21 +6,21 @@ const productSchema = new mongoose.Schema({
 		required: true,
 		trim: true,
 	},
-	category: {
-		type: String,
-		required: true,
-		enum: ["grain", "flour", "oil", "other"],
-	},
+	// category: {
+	// 	type: String,
+	// 	required: true,
+	// 	enum: ["grain", "flour", "oil", "other"],
+	// },
 	price: {
 		type: Number,
 		required: true,
 		min: 0,
 	},
-	quantity: {
-		type: Number,
-		required: true,
-		min: 0,
-	},
+	// quantity: {
+	// 	type: Number,
+	// 	required: true,
+	// 	min: 0,
+	// },
 	// sizes: {
 	// 	type: [String], // Array of sizes, e.g., ["2kg", "25kg"]
 	// 	required: true,
@@ -34,11 +34,11 @@ const productSchema = new mongoose.Schema({
 		default: Date.now,
 	},
 
-	lastUpdateBy: {
+	lastUpdateDate: {
 		type: Date,
 		default: Date.now,
 	},
-	userId: {
+	lastUpdateBy: {
 		type: mongoose.Schema.Types.ObjectId, // References a user ID
 		ref: "User", // Assumes a User model exists
 		required: true,
