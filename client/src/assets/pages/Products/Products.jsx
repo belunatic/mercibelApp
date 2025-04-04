@@ -9,6 +9,7 @@ const Products = () => {
       try {
         const res = await axios.get("http://localhost:5000/products/");
         console.log("this is the result", res);
+        setData(res.data);
       } catch (err) {
         console.log(err);
       }
