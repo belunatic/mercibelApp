@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { UseAuthContext } from "../../../context/AuthContext";
 
 const AddProduct = () => {
+  const { loggedInUser } = UseAuthContext();
+
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState(1);
   const [productDesc, setProductDesc] = useState("");
@@ -8,7 +12,20 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      console.log("Hello");
+      const res = await axios.post("http://localhost:5000/products/", {
+        name: productName,
+        price: productPrice,
+        description: productDesc,
+        lastUpdatedBy: loggedInUser.id,
+        lastUpdateDate: new Date(),
+      });
+
+      if (res.status === 400) {
+        console.log("Hello Again LOL");
+        setProductDesc("");
+        setProductName("");
+        setProductPrice(1);
+      }
     } catch (err) {
       console.log(err);
     }
