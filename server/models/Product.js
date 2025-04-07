@@ -29,10 +29,6 @@ const productSchema = new mongoose.Schema({
 		type: String,
 		trim: true,
 	},
-	createdAt: {
-		type: Date,
-		default: Date.now,
-	},
 
 	lastUpdateDate: {
 		type: Date,
@@ -42,6 +38,10 @@ const productSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId, // References a user ID
 		ref: "User", // Assumes a User model exists
 		required: true,
+	},
+	createdAt: {
+		type: Date,
+		default: Date.now,
 	},
 });
 

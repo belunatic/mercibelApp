@@ -6,4 +6,8 @@ module.exports = {
 		let data = await Product.find();
 		res.json(data);
 	}),
+	createProduct: asyncHandler(async (req, res) => {
+		let data = await Product.create(req.body);
+		console.log(data);
+	}),
 };
