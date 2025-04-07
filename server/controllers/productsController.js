@@ -9,5 +9,8 @@ module.exports = {
 	createProduct: asyncHandler(async (req, res) => {
 		let data = await Product.create(req.body);
 		console.log(data);
+		if (data) {
+			res.status(201).json({ msg: data });
+		}
 	}),
 };
