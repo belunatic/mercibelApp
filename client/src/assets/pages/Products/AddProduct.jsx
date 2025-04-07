@@ -20,7 +20,7 @@ const AddProduct = () => {
         lastUpdateDate: new Date(),
       });
 
-      if (res.status === 200) {
+      if (res.status === 200 || res.status === 201) {
         console.log("Hello Again LOL");
         setProductDesc("");
         setProductName("");
