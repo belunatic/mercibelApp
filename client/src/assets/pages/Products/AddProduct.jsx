@@ -16,12 +16,13 @@ const AddProduct = () => {
         name: productName,
         price: productPrice,
         description: productDesc,
-        lastUpdatedBy: loggedInUser.id,
+        lastUpdateBy: loggedInUser.id,
         lastUpdateDate: new Date(),
       });
 
-      if (res.status === 200 || res.status === 201) {
+      if (res.status === 201) {
         console.log("Hello Again LOL");
+        console.log(res.data);
         setProductDesc("");
         setProductName("");
         setProductPrice(1);
@@ -52,9 +53,10 @@ const AddProduct = () => {
                 name="product-name"
                 id="product-name"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
-                placeholder="Cassava Flour 25 kg”"
+                placeholder="Cassava Flour 25 kg"
                 required
                 onChange={(e) => setProductName(e.target.value)}
+                value={productName}
               />
             </div>
 
@@ -72,6 +74,7 @@ const AddProduct = () => {
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="3800"
                 onChange={(e) => setProductPrice(e.target.value)}
+                value={productPrice}
                 required
               />
             </div>
@@ -88,6 +91,7 @@ const AddProduct = () => {
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 onChange={(e) => setProductDesc(e.target.value)}
                 placeholder="Details"
+                value={productDesc}
               ></textarea>
             </div>
           </div>
