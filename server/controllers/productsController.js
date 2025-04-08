@@ -10,7 +10,7 @@ module.exports = {
 		let data = await Product.create(req.body);
 		console.log(data);
 		if (data) {
-			res.status(201).json({ msg: data });
+			res.status(201).json({ msg: "Product Added" });
 		}
 	}),
 };
