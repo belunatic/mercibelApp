@@ -1,20 +1,18 @@
 // ToastUtil.js
-import React from "react";
-import { ToastContainer } from "react-toastify";
-import { Bounce } from "react-toastify";
+import { ToastContainer, Bounce } from "react-toastify";
 
 const ToastUtil = () => {
   return (
     <ToastContainer
-      position="top-right"
+      position="bottom-left"
       autoClose={5000}
       hideProgressBar
       newestOnTop={false}
-      closeOnClick
+      closeOnClick={false}
       rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover={false}
+      pauseOnFocusLoss={false}
+      draggable={false}
+      pauseOnHover
       theme="light"
       transition={Bounce}
     />
