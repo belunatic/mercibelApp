@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { UseAuthContext } from "../../../context/AuthContext";
+import { UseAuthContext } from "../../context/AuthContext";
 
 const AddProduct = () => {
   const { loggedInUser } = UseAuthContext();
