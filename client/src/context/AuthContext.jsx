@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext(null);
 
@@ -46,6 +47,11 @@ export const AuthContextProvider = ({ children }) => {
     setLoggedInUser(null); // Set logged-in user to null
   };
 
+  //handle the Toast Alert messages
+  const toastMessage = (msg) => {
+    toast.info(msg, { style: { background: "#FFF", color: "#00A63E" } });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -54,6 +60,7 @@ export const AuthContextProvider = ({ children }) => {
         handleLogout,
         showRegister,
         setShowRegister,
+        toastMessage,
       }}
     >
       {children}
