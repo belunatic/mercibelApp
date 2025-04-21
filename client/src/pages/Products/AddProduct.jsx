@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { UseAuthContext } from "../../context/AuthContext";
-import { ToastContainer, toast, Bounce } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import ToastUtil from "../../util/ToastUtil";
 
 const AddProduct = () => {
-  const { loggedInUser } = UseAuthContext();
+  const { loggedInUser, toastMessage } = UseAuthContext();
 
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState(1);
@@ -23,8 +23,8 @@ const AddProduct = () => {
       });
 
       if (res.status === 201) {
-        console.log("Hello Again LOL");
-        console.log(res.data);
+        //display toast message
+        toastMessage(res.data.msg);
         setProductDesc("");
         setProductName("");
         setProductPrice(1);
@@ -32,10 +32,6 @@ const AddProduct = () => {
     } catch (err) {
       console.log(err);
     }
-  };
-
-  const alertToast = () => {
-    toast.info("Wow, hell no!", { style: { background: "#efa239" } });
   };
 
   return (
@@ -107,7 +103,6 @@ const AddProduct = () => {
             </button>
           </div>
         </form>
-        <button onClick={alertToast}>Alert</button>
         <ToastUtil />
       </div>
     </div>
