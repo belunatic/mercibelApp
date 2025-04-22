@@ -11,6 +11,7 @@ const Products = () => {
         const res = await axios.get("http://localhost:5000/products/");
         console.log("this is the result", res.data);
         setData(res.data);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -38,13 +39,13 @@ const Products = () => {
                       scope="col"
                       class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                     >
-                      Age
+                      Price
                     </th>
                     <th
                       scope="col"
-                      class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                      class="hidden px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase md:block dark:text-neutral-500"
                     >
-                      Address
+                      Description
                     </th>
                     <th
                       scope="col"
@@ -63,8 +64,10 @@ const Products = () => {
                       <td class="px-6 py-4 text-sm whitespace-nowrap text-gray-800 dark:text-neutral-200">
                         {item.price}
                       </td>
-                      <td class="px-6 py-4 text-sm whitespace-nowrap text-gray-800 dark:text-neutral-200">
-                        {item.description}
+                      <td class="hidden px-6 py-4 text-sm whitespace-nowrap text-gray-800 md:block dark:text-neutral-200">
+                        {item.description.length > 25
+                          ? `${item.description.slice(0, 25)}...`
+                          : item.description}
                       </td>
                       <td class="px-6 py-4 text-end text-sm font-medium whitespace-nowrap">
                         <button
@@ -84,7 +87,11 @@ const Products = () => {
       </div>
     );
   };
-  return <div>hello Product</div>;
+  return (
+    <div div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800">
+      {loading ? "Loading..." : displayProducts()}
+    </div>
+  );
 };
 
 export default Products;
