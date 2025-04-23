@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Products from "./pages/Products/Products";
 import Clients from "./pages/Clients";
 import AddProduct from "./pages/Products/AddProduct";
+import EditProduct from "./pages/Products/EditProduct";
 
 const App = () => {
   const { loggedInUser, showRegister } = UseAuthContext();
@@ -23,6 +24,7 @@ const App = () => {
               {/* Products Routes */}
               <Route path="/products" element={<Products />} />
               <Route path="/addProduct" element={<AddProduct />} />
+              <Route path="/editProduct/:id" element={<EditProduct />} />
               {/* end of Products routes */}
               <Route path="/clients" element={<Clients />} />
               <Route path="/login" element={<Login />} />
