@@ -9,7 +9,6 @@ const Products = () => {
     const getProducts = async () => {
       try {
         const res = await axios.get("http://localhost:5000/products/");
-        console.log("this is the result", res.data);
         setData(res.data);
         setLoading(false);
       } catch (err) {
@@ -43,7 +42,7 @@ const Products = () => {
                     </th>
                     <th
                       scope="col"
-                      class="hidden px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase md:block dark:text-neutral-500"
+                      class="hidden px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase sm:hidden dark:text-neutral-500"
                     >
                       Description
                     </th>
@@ -64,7 +63,7 @@ const Products = () => {
                       <td class="px-6 py-4 text-sm whitespace-nowrap text-gray-800 dark:text-neutral-200">
                         {item.price}
                       </td>
-                      <td class="hidden px-6 py-4 text-sm whitespace-nowrap text-gray-800 md:block dark:text-neutral-200">
+                      <td class="hidden px-6 py-4 text-sm whitespace-nowrap text-gray-800 sm:hidden dark:text-neutral-200">
                         {item.description.length > 25
                           ? `${item.description.slice(0, 25)}...`
                           : item.description}
