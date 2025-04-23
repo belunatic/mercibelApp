@@ -1,7 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
+  const navigate = useNavigate();
+
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -56,7 +59,10 @@ const Products = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-neutral-700">
                   {data.map((item) => (
-                    <tr className="hover:bg-gray-100 dark:hover:bg-neutral-700">
+                    <tr
+                      className="hover:bg-gray-100 dark:hover:bg-neutral-700"
+                      key={item._id}
+                    >
                       <td className="px-6 py-4 text-sm font-medium whitespace-nowrap text-gray-800 dark:text-neutral-200">
                         {item.name}
                       </td>
@@ -71,9 +77,16 @@ const Products = () => {
                       <td className="px-6 py-4 text-end text-sm font-medium whitespace-nowrap">
                         <button
                           type="button"
-                          className="inline-flex items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-blue-600 hover:text-blue-800 focus:text-blue-800 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400"
+                          className="inline-flex cursor-pointer items-center gap-x-2 rounded-lg border border-transparent pr-2 text-sm font-semibold text-blue-600 hover:text-blue-800 focus:text-blue-800 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400"
                         >
                           Delete
+                        </button>
+                        <button
+                          type="button"
+                          className="inline-flex cursor-pointer items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-blue-600 hover:text-blue-800 focus:text-blue-800 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400"
+                          onClick={() => navigate(`/editProduct/${item._id}`)}
+                        >
+                          Edit
                         </button>
                       </td>
                     </tr>
