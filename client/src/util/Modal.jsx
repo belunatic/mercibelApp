@@ -18,15 +18,18 @@ const Modal = ({ openModal, closeModal, children, confirmFunction }) => {
     <dialog
       ref={ref}
       onCancel={closeModal}
-      className="fixed inset-0 flex h-screen w-full items-center justify-center bg-white/50 p-4 backdrop-blur-sm"
+      className="fixed inset-0 flex h-screen w-screen items-center justify-center bg-transparent p-4 backdrop-blur-sm"
     >
       <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
         <div className="text-end">
-          <button onClick={closeModal} className="cursor-pointer text-red-500">
-            x
+          <button
+            onClick={closeModal}
+            className="cursor-pointer pb-2 text-red-500"
+          >
+            X
           </button>
         </div>
-        <div>{children}</div>
+        <div className="pt-2 pb-4">{children}</div>
         <div className="mt-4 flex justify-end space-x-4">
           <button
             className="cursor-pointer rounded bg-red-500 px-4 py-2 text-white"
