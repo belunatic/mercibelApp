@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Modal from "../../util/Modal";
 
 const Products = () => {
   const navigate = useNavigate();
 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -21,6 +23,11 @@ const Products = () => {
 
     getProducts();
   }, []);
+
+  const deleteProduct = () => {
+    console.log("I got deleted");
+    setModal(false);
+  };
 
   const displayProducts = () => {
     return (
@@ -51,7 +58,7 @@ const Products = () => {
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-300"
+                      className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-300"
                     >
                       Action
                     </th>
@@ -78,6 +85,7 @@ const Products = () => {
                         <button
                           type="button"
                           className="inline-flex cursor-pointer items-center gap-x-2 rounded-lg border border-transparent pr-2 text-sm font-semibold text-blue-600 hover:text-blue-800 focus:text-blue-800 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400"
+                          onClick={() => setModal(true)}
                         >
                           Delete
                         </button>
@@ -100,12 +108,20 @@ const Products = () => {
     );
   };
   return (
-    <div
-      div
-      classNameName="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800"
-    >
-      {loading ? "Loading..." : displayProducts()}
-    </div>
+    <>
+      {modal && (
+        <Modal
+          openModal={modal}
+          closeModal={() => setModal(false)}
+          confirmFunction={deleteProduct}
+        >
+          Modal content.
+        </Modal>
+      )}
+      <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800">
+        {loading ? "Loading..." : displayProducts()}
+      </div>
+    </>
   );
 };
 
