@@ -115,7 +115,7 @@ const Products = () => {
           closeModal={() => setModal(false)}
           confirmFunction={deleteProduct}
         >
-          Modal content.
+          Are ou sure you want to delete this product?
         </Modal>
       )}
       <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800">
