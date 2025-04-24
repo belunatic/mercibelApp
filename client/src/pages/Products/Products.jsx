@@ -2,13 +2,17 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../util/Modal";
+import ToastUtil from "../../util/ToastUtil";
+import { UseAuthContext } from "../../context/AuthContext";
 
 const Products = () => {
+  const { toastMessage } = UseAuthContext();
   const navigate = useNavigate();
 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(false);
+  const [deletedItem, setDeletedItem] = useState(null);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -24,9 +28,31 @@ const Products = () => {
     getProducts();
   }, []);
 
-  const deleteProduct = () => {
-    console.log("I got deleted");
-    setModal(false);
+  //open confirmation modal and set the deleted Item
+  // to be deleted when the user confirms the deletion
+  const openModal = (item) => {
+    console.log(item);
+    setModal(true);
+    setDeletedItem(item);
+  };
+
+  const deleteProduct = async (item) => {
+    const { _id, name } = item;
+    //if no id is found do nothing
+    if (!_id) return;
+    try {
+      const res = await axios.delete(`http://localhost:5000/products/${_id}`);
+      if (res.status === 200 || res.status === 201) {
+        //display toast message
+        toastMessage(`Product ${name} deleted successfully`);
+        setData(data.filter((item) => item._id !== _id));
+        //close modal
+        setModal(false);
+      }
+    } catch (err) {
+      toastMessage("Error deleting product");
+      console.log(err);
+    }
   };
 
   const displayProducts = () => {
@@ -85,7 +111,7 @@ const Products = () => {
                         <button
                           type="button"
                           className="inline-flex cursor-pointer items-center gap-x-2 rounded-lg border border-transparent pr-2 text-sm font-semibold text-blue-600 hover:text-blue-800 focus:text-blue-800 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400"
-                          onClick={() => setModal(true)}
+                          onClick={() => openModal(item)}
                         >
                           Delete
                         </button>
@@ -113,7 +139,7 @@ const Products = () => {
         <Modal
           openModal={modal}
           closeModal={() => setModal(false)}
-          confirmFunction={deleteProduct}
+          confirmFunction={() => deleteProduct(deletedItem)}
         >
           Are ou sure you want to delete this product?
         </Modal>
@@ -121,6 +147,7 @@ const Products = () => {
       <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800 dark:text-white">
         {loading ? "Loading..." : displayProducts()}
       </div>
+      <ToastUtil />
     </>
   );
 };
