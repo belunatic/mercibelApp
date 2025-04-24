@@ -35,7 +35,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="relative m-4 sm:m-10">
+    <div className="relative m-4 h-full sm:m-10">
       <div className="flex items-start justify-between rounded-t border-b p-5">
         <h3 className="text-xl font-semibold">Add Product</h3>
       </div>
@@ -46,7 +46,7 @@ const AddProduct = () => {
             <div className="col-span-6 sm:col-span-3">
               <label
                 htmlFor="product-name"
-                className="mb-2 block text-sm font-medium text-gray-900"
+                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Product Name
               </label>
@@ -65,7 +65,7 @@ const AddProduct = () => {
             <div className="col-span-6 sm:col-span-3">
               <label
                 htmlFor="price"
-                className="mb-2 block text-sm font-medium text-gray-900"
+                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Price
               </label>
@@ -83,7 +83,7 @@ const AddProduct = () => {
             <div className="col-span-full">
               <label
                 htmlFor="product-details"
-                className="mb-2 block text-sm font-medium text-gray-900"
+                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Product Details
               </label>
@@ -97,7 +97,7 @@ const AddProduct = () => {
               ></textarea>
             </div>
           </div>
-          <div className="rounded-b border-t border-gray-200 py-6">
+          <div className="rounded-b py-6">
             <button className="cursor-pointer rounded-lg bg-green-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-600 focus:ring-4 focus:ring-cyan-200">
               Create
             </button>
