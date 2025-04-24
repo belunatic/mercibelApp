@@ -18,7 +18,7 @@ const App = () => {
       {loggedInUser?.username ? (
         <div className="flex w-full flex-col">
           <NavBar />
-          <div>
+          <div className="dark:bg-gray-800 dark:text-white">
             <Routes>
               <Route exact path="/" element={<Dashboard />} />
               {/* Products Routes */}
