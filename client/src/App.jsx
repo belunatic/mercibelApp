@@ -9,16 +9,17 @@ import Products from "./pages/Products/Products";
 import Clients from "./pages/Clients";
 import AddProduct from "./pages/Products/AddProduct";
 import EditProduct from "./pages/Products/EditProduct";
+import Footer from "./components/Footer";
 
 const App = () => {
   const { loggedInUser, showRegister } = UseAuthContext();
 
   return (
-    <div className="flex min-h-screen w-full">
+    <div className="flex min-h-screen w-full flex-col">
       {loggedInUser?.username ? (
-        <div className="flex w-full flex-col">
+        <div className="flex min-h-screen w-full flex-col">
           <NavBar />
-          <div className="dark:bg-gray-800 dark:text-white">
+          <div className="grow dark:bg-gray-800 dark:text-white">
             <Routes>
               <Route exact path="/" element={<Dashboard />} />
               {/* Products Routes */}
@@ -42,6 +43,7 @@ const App = () => {
           <div>{showRegister ? <Register /> : <Login />}</div>
         </div>
       )}
+      <Footer />
     </div>
   );
 };
