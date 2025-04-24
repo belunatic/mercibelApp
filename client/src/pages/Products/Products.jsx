@@ -118,7 +118,7 @@ const Products = () => {
           Are ou sure you want to delete this product?
         </Modal>
       )}
-      <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800">
+      <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800 dark:text-white">
         {loading ? "Loading..." : displayProducts()}
       </div>
     </>
