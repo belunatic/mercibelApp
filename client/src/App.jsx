@@ -33,7 +33,7 @@ const App = () => {
           </div>
         </div>
       ) : (
-        <div className="flex w-full flex-col items-center justify-center">
+        <div className="flex w-full grow flex-col items-center justify-center dark:bg-gray-800 dark:text-white">
           <div className="pb-4">
             <img
               src="/Mercibel_Production_Logo.png"

@@ -50,7 +50,7 @@ const Login = () => {
 
   return (
     <div className="auth-form">
-      <h2>Login</h2>
+      <h2 className="pb-4 text-center text-xl font-bold">Login</h2>
       <form onSubmit={onSubmit}>
         <input
           type="text"

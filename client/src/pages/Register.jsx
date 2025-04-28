@@ -36,7 +36,7 @@ const Register = () => {
 
   return (
     <div className="auth-form">
-      <h2>Register</h2>
+      <h2 className="pb-4 text-center text-xl font-bold">Register</h2>
       <form onSubmit={onSubmit}>
         <input
           type="text"
