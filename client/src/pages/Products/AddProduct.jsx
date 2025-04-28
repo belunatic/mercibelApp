@@ -30,6 +30,7 @@ const AddProduct = () => {
         setProductDesc("");
         setProductName("");
         setProductPrice(1);
+        setTimeout(() => navigate("/products"), 1000);
       }
     } catch (err) {
       console.log(err);
@@ -105,7 +106,10 @@ const AddProduct = () => {
             </button>
             <button
               className="cursor-pointer rounded-lg bg-green-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-600 focus:ring-4 focus:ring-cyan-200"
-              onClick={() => navigate("/products")}
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/products");
+              }}
             >
               Cancel
             </button>
