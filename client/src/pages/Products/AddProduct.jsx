@@ -3,9 +3,11 @@ import axios from "axios";
 import { UseAuthContext } from "../../context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import ToastUtil from "../../util/ToastUtil";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const { loggedInUser, toastMessage } = UseAuthContext();
+  const navigate = useNavigate();
 
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState(1);
@@ -97,9 +99,15 @@ const AddProduct = () => {
               ></textarea>
             </div>
           </div>
-          <div className="rounded-b py-6">
+          <div className="flex gap-4 rounded-b border-t border-gray-200 py-6">
             <button className="cursor-pointer rounded-lg bg-green-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-600 focus:ring-4 focus:ring-cyan-200">
               Create
+            </button>
+            <button
+              className="cursor-pointer rounded-lg bg-green-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-600 focus:ring-4 focus:ring-cyan-200"
+              onClick={() => navigate("/products")}
+            >
+              Cancel
             </button>
           </div>
         </form>
