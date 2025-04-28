@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { UseAuthContext } from "../../context/AuthContext";
-import { ToastContainer } from "react-toastify";
 import ToastUtil from "../../util/ToastUtil";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -24,7 +23,6 @@ const EditProduct = () => {
         setProductName(res.data.name);
         setProductPrice(res.data.price);
         setProductDesc(res.data.description);
-        toastMessage(res.data.msg);
       } catch (err) {
         console.log(err);
         toastMessage("Error retrieving product details");
@@ -44,11 +42,13 @@ const EditProduct = () => {
         lastUpdateBy: loggedInUser.id,
         lastUpdateDate: new Date(),
       });
-
+      console.log(res.data, res.status);
       if (res.status === 201 || res.status === 200) {
         //display toast message
         toastMessage(res.data.msg);
-        navigate("/products");
+        //added a delay before navigating to the products page
+        //so as to display the toast message
+        setTimeout(() => navigate("/products"), 1000);
       }
     } catch (err) {
       console.log(err);
@@ -118,9 +118,9 @@ const EditProduct = () => {
               ></textarea>
             </div>
           </div>
-          <div className="flex gap-4 rounded-b border-t border-gray-200 py-6">
+          <div className="flex gap-4 rounded-b py-6">
             <button className="cursor-pointer rounded-lg bg-green-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-600 focus:ring-4 focus:ring-cyan-200">
-              Submit
+              Update
             </button>
             <button
               className="cursor-pointer rounded-lg bg-green-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-600 focus:ring-4 focus:ring-cyan-200"
