@@ -151,7 +151,7 @@ const Products = () => {
 
       <div class="fixed right-4 bottom-20">
         <NavLink to="/addProduct">
-          <button class="rounded-full bg-green-700 px-2 py-2 font-bold text-white shadow-lg hover:bg-green-600">
+          <button class="cursor-pointer rounded-full bg-green-700 px-2 py-2 font-bold text-white shadow-lg hover:bg-green-600">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
