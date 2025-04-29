@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import NavBar from "./components/NavBar";
 import Dashboard from "./pages/Dashboard";
 import Products from "./pages/Products/Products";
-import Clients from "./pages/Clients";
+import Customers from "./pages/Customers/Customers";
 import AddProduct from "./pages/Products/AddProduct";
 import EditProduct from "./pages/Products/EditProduct";
 import Footer from "./components/Footer";
@@ -27,7 +27,7 @@ const App = () => {
               <Route path="/addProduct" element={<AddProduct />} />
               <Route path="/editProduct/:id" element={<EditProduct />} />
               {/* end of Products routes */}
-              <Route path="/clients" element={<Clients />} />
+              <Route path="/customers" element={<Customers />} />
               <Route path="/login" element={<Login />} />
             </Routes>
           </div>
