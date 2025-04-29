@@ -10,6 +10,7 @@ import Customers from "./pages/Customers/Customers";
 import AddProduct from "./pages/Products/AddProduct";
 import EditProduct from "./pages/Products/EditProduct";
 import Footer from "./components/Footer";
+import AddCustomers from "./pages/Customers/AddCustomers";
 
 const App = () => {
   const { loggedInUser, showRegister } = UseAuthContext();
@@ -27,7 +28,10 @@ const App = () => {
               <Route path="/addProduct" element={<AddProduct />} />
               <Route path="/editProduct/:id" element={<EditProduct />} />
               {/* end of Products routes */}
+              {/*Customer Routes */}
               <Route path="/customers" element={<Customers />} />
+              <Route path="/addCustomer" element={<AddCustomers />} />
+              {/* end of Customer routes */}
               <Route path="/login" element={<Login />} />
             </Routes>
           </div>
