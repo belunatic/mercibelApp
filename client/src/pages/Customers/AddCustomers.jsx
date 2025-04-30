@@ -1,6 +1,21 @@
-import React from "react";
+import { useState } from "react";
 
 const AddCustomers = () => {
+  //   const [formData, setFormData] = useState({});
+
+  //   const handleChange = (event) => {
+  //     const { name, value } = event.target;
+  //     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  //   };
+
+  //   const handleSubmit = (event) => {
+  //     event.preventDefault();
+  //     const form = event.target;
+  //     const data = new FormData(form);
+  //     const formValues = Object.fromEntries(data.entries());
+  //     console.log("Form Data:", formValues);
+  //     console.log("State Data:", formData);
+  //   };
   return (
     <div className="relative m-4 h-full sm:m-10">
       <div className="flex items-start justify-between rounded-t border-b p-5">
@@ -8,7 +23,7 @@ const AddCustomers = () => {
       </div>
 
       <div className="space-y-6 p-6">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-6 gap-6">
             <div className="col-span-full">
               <h3 className="border-b border-b-1 py-4 text-xl font-bold">
@@ -27,7 +42,7 @@ const AddCustomers = () => {
                 name="customer-name"
                 id="customer-name"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
-                placeholder="Cassava Flour 25 kg"
+                placeholder="Shoppers Plaza"
                 required
                 // onChange={(e) => setProductName(e.target.value)}
                 // value={productName}
@@ -45,7 +60,7 @@ const AddCustomers = () => {
                 name="contact-name"
                 id="contact-name"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
-                placeholder="255 123 456 789"
+                placeholder="John Doe"
                 // onChange={(e) => setProductName(e.target.value)}
                 // value={productName}
               />
@@ -99,7 +114,7 @@ const AddCustomers = () => {
                 name="contact-name"
                 id="contact-name"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
-                placeholder="255 123 456 789"
+                placeholder="Sarah Doe"
                 // onChange={(e) => setProductName(e.target.value)}
                 // value={productName}
               />
@@ -155,7 +170,7 @@ const AddCustomers = () => {
                 name="customer-address"
                 id="customer-address"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
-                placeholder="Cassava Flour 25 kg"
+                placeholder="No.22, Kigoma Street, Mbezi Beach"
                 required
                 // onChange={(e) => setProductName(e.target.value)}
                 // value={productName}
@@ -173,7 +188,7 @@ const AddCustomers = () => {
                 name="contact-region"
                 id="contact-region"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
-                placeholder="255 123 456 789"
+                placeholder="Dar es Salaam"
                 // onChange={(e) => setProductName(e.target.value)}
                 // value={productName}
               />
