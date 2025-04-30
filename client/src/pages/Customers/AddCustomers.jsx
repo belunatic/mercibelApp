@@ -87,6 +87,57 @@ const AddCustomers = () => {
                 required
               />
             </div>
+            <div className="col-span-6 sm:col-span-2">
+              <label
+                htmlFor="contact-name"
+                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Contact 2 Name
+              </label>
+              <input
+                type="text"
+                name="contact-name"
+                id="contact-name"
+                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
+                placeholder="255 123 456 789"
+                // onChange={(e) => setProductName(e.target.value)}
+                // value={productName}
+              />
+            </div>
+            <div className="col-span-6 sm:col-span-2">
+              <label
+                htmlFor="contact-phone"
+                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Contact 2 Phone Number
+              </label>
+              <input
+                type="tel"
+                name="contact-phone"
+                id="contact-phone"
+                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
+                // onChange={(e) => setProductName(e.target.value)}
+                // value={productName}
+              />
+            </div>
+
+            <div className="col-span-6 sm:col-span-2">
+              <label
+                htmlFor="contact-email"
+                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Contact 2 Email
+              </label>
+              <input
+                type="email"
+                name="contact-email"
+                id="contact-email"
+                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
+
+                // onChange={(e) => setProductPrice(e.target.value)}
+                // value={productPrice}
+              />
+            </div>
             <div className="col-span-full">
               <h3 className="border-b border-b-1 py-4 text-xl font-bold">
                 Customer Info
@@ -152,25 +203,29 @@ const AddCustomers = () => {
                 htmlFor="contact-email"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
-                Email
+                Type
               </label>
-              <input
-                type="email"
-                name="contact-email"
-                id="contact-email"
+              <select
+                name="contact-type"
+                id="contact-type"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
-                placeholder="abc@xyz.com"
                 // onChange={(e) => setProductPrice(e.target.value)}
                 // value={productPrice}
                 required
-              />
+              >
+                <option value="Retailer" checked>
+                  Retailer
+                </option>
+                <option value="Business">Business</option>
+                <option value="Wholesaler">Wholesaler</option>
+              </select>
             </div>
             <div className="col-span-full">
               <label
                 htmlFor="contact-extra"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
-                Product Details
+                Notes
               </label>
               <textarea
                 id="contact-extra"
@@ -182,7 +237,7 @@ const AddCustomers = () => {
               ></textarea>
             </div>
           </div>
-          <div className="flex gap-4 rounded-b border-t border-gray-200 py-6">
+          <div className="flex gap-4 rounded-b py-6">
             <button className="cursor-pointer rounded-lg bg-green-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-600 focus:ring-4 focus:ring-cyan-200">
               Create
             </button>
