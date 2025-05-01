@@ -1,21 +1,22 @@
 import { useState } from "react";
 
 const AddCustomers = () => {
-  //   const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({});
 
-  //   const handleChange = (event) => {
-  //     const { name, value } = event.target;
-  //     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-  //   };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    console.log(name, value);
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
 
-  //   const handleSubmit = (event) => {
-  //     event.preventDefault();
-  //     const form = event.target;
-  //     const data = new FormData(form);
-  //     const formValues = Object.fromEntries(data.entries());
-  //     console.log("Form Data:", formValues);
-  //     console.log("State Data:", formData);
-  //   };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const data = new FormData(form);
+    const formValues = Object.fromEntries(data.entries());
+    console.log("Form Data:", formValues);
+    console.log("State Data:", formData);
+  };
   return (
     <div className="relative m-4 h-full sm:m-10">
       <div className="flex items-start justify-between rounded-t border-b p-5">
@@ -46,6 +47,8 @@ const AddCustomers = () => {
                 required
                 // onChange={(e) => setProductName(e.target.value)}
                 // value={productName}
+                onChange={handleChange}
+                value={formData["customer-name"] || ""}
               />
             </div>
             <div className="col-span-6 sm:col-span-2">
@@ -111,7 +114,7 @@ const AddCustomers = () => {
               </label>
               <input
                 type="text"
-                name="contact-name"
+                name="contact-name2"
                 id="contact-name"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="Sarah Doe"
@@ -121,7 +124,7 @@ const AddCustomers = () => {
             </div>
             <div className="col-span-6 sm:col-span-2">
               <label
-                htmlFor="contact-phone"
+                htmlFor="contact-phone2"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Contact 2 Phone Number
@@ -138,7 +141,7 @@ const AddCustomers = () => {
 
             <div className="col-span-6 sm:col-span-2">
               <label
-                htmlFor="contact-email"
+                htmlFor="contact-email2"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Contact 2 Email
