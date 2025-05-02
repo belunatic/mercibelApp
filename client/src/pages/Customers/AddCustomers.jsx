@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const AddCustomers = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({ "customer-type": "Retailer" });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -45,8 +45,6 @@ const AddCustomers = () => {
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="Shoppers Plaza"
                 required
-                // onChange={(e) => setProductName(e.target.value)}
-                // value={productName}
                 onChange={handleChange}
                 value={formData["customer-name"] || ""}
               />
@@ -64,8 +62,8 @@ const AddCustomers = () => {
                 id="contact-name"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="John Doe"
-                // onChange={(e) => setProductName(e.target.value)}
-                // value={productName}
+                onChange={handleChange}
+                value={formData["contact-name"] || ""}
               />
             </div>
             <div className="col-span-6 sm:col-span-2">
@@ -82,8 +80,8 @@ const AddCustomers = () => {
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="255 123 456 789"
                 required
-                // onChange={(e) => setProductName(e.target.value)}
-                // value={productName}
+                onChange={handleChange}
+                value={formData["contact-phone"] || ""}
               />
             </div>
 
@@ -100,14 +98,14 @@ const AddCustomers = () => {
                 id="contact-email"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="abc@xyz.com"
-                // onChange={(e) => setProductPrice(e.target.value)}
-                // value={productPrice}
+                onChange={handleChange}
+                value={formData["contact-email"] || ""}
                 required
               />
             </div>
             <div className="col-span-6 sm:col-span-2">
               <label
-                htmlFor="contact-name"
+                htmlFor="contact-name2"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Contact 2 Name
@@ -115,11 +113,11 @@ const AddCustomers = () => {
               <input
                 type="text"
                 name="contact-name2"
-                id="contact-name"
+                id="contact-name2"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="Sarah Doe"
-                // onChange={(e) => setProductName(e.target.value)}
-                // value={productName}
+                onChange={handleChange}
+                value={formData["contact-name2"] || ""}
               />
             </div>
             <div className="col-span-6 sm:col-span-2">
@@ -131,11 +129,11 @@ const AddCustomers = () => {
               </label>
               <input
                 type="tel"
-                name="contact-phone"
-                id="contact-phone"
+                name="contact-phone2"
+                id="contact-phone2"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
-                // onChange={(e) => setProductName(e.target.value)}
-                // value={productName}
+                onChange={handleChange}
+                value={formData["contact-phone2"] || ""}
               />
             </div>
 
@@ -148,12 +146,11 @@ const AddCustomers = () => {
               </label>
               <input
                 type="email"
-                name="contact-email"
-                id="contact-email"
+                name="contact-email2"
+                id="contact-email2"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
-
-                // onChange={(e) => setProductPrice(e.target.value)}
-                // value={productPrice}
+                onChange={handleChange}
+                value={formData["contact-email2"] || ""}
               />
             </div>
             <div className="col-span-full">
@@ -175,57 +172,56 @@ const AddCustomers = () => {
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="No.22, Kigoma Street, Mbezi Beach"
                 required
-                // onChange={(e) => setProductName(e.target.value)}
-                // value={productName}
+                onChange={handleChange}
+                value={formData["customer-address"] || ""}
               />
             </div>
             <div className="col-span-6 sm:col-span-2">
               <label
-                htmlFor="contact-region"
+                htmlFor="customer-region"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 State/Region
               </label>
               <input
                 type="text"
-                name="contact-region"
-                id="contact-region"
+                name="customer-region"
+                id="customer-region"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="Dar es Salaam"
-                // onChange={(e) => setProductName(e.target.value)}
-                // value={productName}
+                onChange={handleChange}
+                value={formData["customer-region"] || ""}
               />
             </div>
             <div className="col-span-6 sm:col-span-2">
               <label
-                htmlFor="contact-country"
+                htmlFor="customer-country"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Country
               </label>
               <input
                 type="tel"
-                name="contact-country"
-                id="contact-country"
+                name="customer-country"
+                id="customer-country"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="Tanzania"
-                value="Tanzania"
                 required
-                // onChange={(e) => setProductName(e.target.value)}
-                // value={productName}
+                onChange={handleChange}
+                value={formData["customer-country"] || "Tanzania"}
               />
             </div>
 
             <div className="col-span-6 sm:col-span-2">
               <label
-                htmlFor="contact-email"
+                htmlFor="customer-type"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Type
               </label>
               <select
-                name="contact-type"
-                id="contact-type"
+                name="customer-type"
+                id="customer-type"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 // onChange={(e) => setProductPrice(e.target.value)}
                 // value={productPrice}
@@ -249,9 +245,10 @@ const AddCustomers = () => {
                 id="contact-extra"
                 rows="3"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
-                // onChange={(e) => setProductDesc(e.target.value)}
-                // placeholder="Details"
-                // value={productDesc}
+                onChange={handleChange}
+                defaultValue={formData["customer-extra"] || ""}
+                placeholder="Extra notes about the customer"
+                name="contact-extra"
               ></textarea>
             </div>
           </div>
