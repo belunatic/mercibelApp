@@ -11,10 +11,10 @@ const AddCustomers = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const form = event.target;
-    const data = new FormData(form);
-    const formValues = Object.fromEntries(data.entries());
-    console.log("Form Data:", formValues);
+    // const form = event.target;
+    // const data = new FormData(form);
+    // const formValues = Object.fromEntries(data.entries());
+    // console.log("Form Data:", formValues);
     console.log("State Data:", formData);
   };
   return (
@@ -223,8 +223,8 @@ const AddCustomers = () => {
                 name="customer-type"
                 id="customer-type"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
-                // onChange={(e) => setProductPrice(e.target.value)}
-                // value={productPrice}
+                onChange={handleChange}
+                value={formData["customer-type"] || "Retailer"}
                 required
               >
                 <option value="Retailer" checked>
