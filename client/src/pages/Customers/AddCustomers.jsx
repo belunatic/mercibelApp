@@ -232,6 +232,8 @@ const AddCustomers = () => {
                 </option>
                 <option value="Business">Business</option>
                 <option value="Wholesaler">Wholesaler</option>
+                <option value="Distributor">Distributor</option>
+                <option value="Other">Other</option>
               </select>
             </div>
             <div className="col-span-full">
