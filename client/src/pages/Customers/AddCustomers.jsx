@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const AddCustomers = () => {
-  const [formData, setFormData] = useState({
+  //initate and reset form data after submit
+  const initialFormState = {
     customerType: "Retailer",
     customerCountry: "Tanzania",
-  });
+  };
+
+  const [formData, setFormData] = useState(initialFormState);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -12,12 +16,29 @@ const AddCustomers = () => {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
+  // const addCustomer = async () => {
+  //   try {
+  //     const res = await axios.post("http://localhost:5000/products/", {
+  //       name: productName,
+  //       price: productPrice,
+  //       description: productDesc,
+  //       lastUpdateBy: loggedInUser.id,
+  //       lastUpdateDate: new Date(),
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    /*alternative way to get form data
     // const form = event.target;
     // const data = new FormData(form);
     // const formValues = Object.fromEntries(data.entries());
     // console.log("Form Data:", formValues);
+    */
     console.log("State Data:", formData);
   };
   return (
