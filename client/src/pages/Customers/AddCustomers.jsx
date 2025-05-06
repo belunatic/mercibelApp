@@ -23,16 +23,14 @@ const AddCustomers = () => {
   return (
     <div className="relative m-4 h-full sm:m-10">
       <div className="flex items-start justify-between rounded-t border-b p-5">
-        <h3 className="text-xl font-semibold">Add Customer</h3>
+        <h3 className="text-xl font-semibold">New Customer</h3>
       </div>
 
       <div className="space-y-6 p-6">
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-6 gap-6">
             <div className="col-span-full">
-              <h3 className="border-b border-b-1 py-4 text-xl font-bold">
-                Business Details
-              </h3>
+              <h3 className="py-4 text-xl font-bold">Customer Contacts</h3>
             </div>
             <div className="col-span-full">
               <label
@@ -157,9 +155,7 @@ const AddCustomers = () => {
               />
             </div>
             <div className="col-span-full">
-              <h3 className="border-b-1 py-4 text-xl font-bold">
-                Customer Info
-              </h3>
+              <h3 className="py-4 text-xl font-bold">Customer Address</h3>
             </div>
             <div className="col-span-full">
               <label
