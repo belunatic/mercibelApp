@@ -1,7 +1,10 @@
 import { useState } from "react";
 
 const AddCustomers = () => {
-  const [formData, setFormData] = useState({ "customer-type": "Retailer" });
+  const [formData, setFormData] = useState({
+    customerType: "Retailer",
+    customerCountry: "Tanzania",
+  });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -154,7 +157,7 @@ const AddCustomers = () => {
               />
             </div>
             <div className="col-span-full">
-              <h3 className="border-b border-b-1 py-4 text-xl font-bold">
+              <h3 className="border-b-1 py-4 text-xl font-bold">
                 Customer Info
               </h3>
             </div>
