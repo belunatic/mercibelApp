@@ -33,37 +33,37 @@ const AddCustomers = () => {
             </div>
             <div className="col-span-full">
               <label
-                htmlFor="customer-name"
+                htmlFor="customerName"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Customer / Business Name
               </label>
               <input
                 type="text"
-                name="customer-name"
-                id="customer-name"
+                name="customerName"
+                id="customerName"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="Shoppers Plaza"
                 required
                 onChange={handleChange}
-                value={formData["customer-name"] || ""}
+                value={formData["customerName"] || ""}
               />
             </div>
             <div className="col-span-6 sm:col-span-2">
               <label
-                htmlFor="contact-name"
+                htmlFor="contactName"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Contact Name
               </label>
               <input
                 type="text"
-                name="contact-name"
-                id="contact-name"
+                name="contactName"
+                id="contactName"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="John Doe"
                 onChange={handleChange}
-                value={formData["contact-name"] || ""}
+                value={formData["contactName"] || ""}
               />
             </div>
             <div className="col-span-6 sm:col-span-2">
@@ -75,13 +75,13 @@ const AddCustomers = () => {
               </label>
               <input
                 type="tel"
-                name="contact-phone"
-                id="contact-phone"
+                name="contactPhone"
+                id="contactPhone"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="255 123 456 789"
                 required
                 onChange={handleChange}
-                value={formData["contact-phone"] || ""}
+                value={formData["contactPhone"] || ""}
               />
             </div>
 
@@ -94,63 +94,63 @@ const AddCustomers = () => {
               </label>
               <input
                 type="email"
-                name="contact-email"
-                id="contact-email"
+                name="contactEmail"
+                id="contactEmail"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="abc@xyz.com"
                 onChange={handleChange}
-                value={formData["contact-email"] || ""}
+                value={formData["contactEmail"] || ""}
                 required
               />
             </div>
             <div className="col-span-6 sm:col-span-2">
               <label
-                htmlFor="contact-name2"
+                htmlFor="contactName2"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Contact 2 Name
               </label>
               <input
                 type="text"
-                name="contact-name2"
-                id="contact-name2"
+                name="contactName2"
+                id="contactName2"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="Sarah Doe"
                 onChange={handleChange}
-                value={formData["contact-name2"] || ""}
+                value={formData["contactName2"] || ""}
               />
             </div>
             <div className="col-span-6 sm:col-span-2">
               <label
-                htmlFor="contact-phone2"
+                htmlFor="contactPhone2"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Contact 2 Phone Number
               </label>
               <input
                 type="tel"
-                name="contact-phone2"
-                id="contact-phone2"
+                name="contactPhone2"
+                id="contactPhone2"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 onChange={handleChange}
-                value={formData["contact-phone2"] || ""}
+                value={formData["contactPhone2"] || ""}
               />
             </div>
 
             <div className="col-span-6 sm:col-span-2">
               <label
-                htmlFor="contact-email2"
+                htmlFor="contactEmail2"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Contact 2 Email
               </label>
               <input
                 type="email"
-                name="contact-email2"
-                id="contact-email2"
+                name="contactEmail2"
+                id="contactEmail2"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 onChange={handleChange}
-                value={formData["contact-email2"] || ""}
+                value={formData["contactEmail2"] || ""}
               />
             </div>
             <div className="col-span-full">
@@ -160,20 +160,20 @@ const AddCustomers = () => {
             </div>
             <div className="col-span-full">
               <label
-                htmlFor="customer-address"
+                htmlFor="customerAddress"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Address
               </label>
               <input
                 type="text"
-                name="customer-address"
-                id="customer-address"
+                name="customerAddress"
+                id="customerAddress"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="No.22, Kigoma Street, Mbezi Beach"
                 required
                 onChange={handleChange}
-                value={formData["customer-address"] || ""}
+                value={formData["customerAddress"] || ""}
               />
             </div>
             <div className="col-span-6 sm:col-span-2">
@@ -185,46 +185,46 @@ const AddCustomers = () => {
               </label>
               <input
                 type="text"
-                name="customer-region"
-                id="customer-region"
+                name="customerRegion"
+                id="customerRegion"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="Dar es Salaam"
                 onChange={handleChange}
-                value={formData["customer-region"] || ""}
+                value={formData["customerRegion"] || ""}
               />
             </div>
             <div className="col-span-6 sm:col-span-2">
               <label
-                htmlFor="customer-country"
+                htmlFor="customerCountry"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Country
               </label>
               <input
                 type="tel"
-                name="customer-country"
-                id="customer-country"
+                name="customerCountry"
+                id="customerCountry"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 placeholder="Tanzania"
                 required
                 onChange={handleChange}
-                value={formData["customer-country"] || "Tanzania"}
+                value={formData["customerCountry"] || "Tanzania"}
               />
             </div>
 
             <div className="col-span-6 sm:col-span-2">
               <label
-                htmlFor="customer-type"
+                htmlFor="customerType"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Type
               </label>
               <select
-                name="customer-type"
-                id="customer-type"
+                name="customerType"
+                id="customerType"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 onChange={handleChange}
-                value={formData["customer-type"] || "Retailer"}
+                value={formData["customerType"] || "Retailer"}
                 required
               >
                 <option value="Retailer" checked>
@@ -236,19 +236,19 @@ const AddCustomers = () => {
             </div>
             <div className="col-span-full">
               <label
-                htmlFor="contact-extra"
+                htmlFor="contactExtra"
                 className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Notes
               </label>
               <textarea
-                id="contact-extra"
+                id="contactExtra"
                 rows="3"
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 text-gray-900 focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
                 onChange={handleChange}
                 defaultValue={formData["customer-extra"] || ""}
                 placeholder="Extra notes about the customer"
-                name="contact-extra"
+                name="contactExtra"
               ></textarea>
             </div>
           </div>
