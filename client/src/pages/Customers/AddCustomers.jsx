@@ -290,15 +290,15 @@ const AddCustomers = () => {
             <button className="cursor-pointer rounded-lg bg-green-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-600 focus:ring-4 focus:ring-cyan-200">
               Create
             </button>
-            {/* <button
+            <button
               className="cursor-pointer rounded-lg bg-green-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-600 focus:ring-4 focus:ring-cyan-200"
               onClick={(e) => {
                 e.preventDefault();
-                navigate("/products");
+                navigate("/customers");
               }}
             >
               Cancel
-            </button> */}
+            </button>
           </div>
         </form>
         {/* <ToastUtil /> */}
