@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
+import { UseAuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const AddCustomers = () => {
   //initate and reset form data after submit
@@ -7,6 +9,9 @@ const AddCustomers = () => {
     customerType: "Retailer",
     customerCountry: "Tanzania",
   };
+
+  const { loggedInUser, toastMessage } = UseAuthContext();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState(initialFormState);
 
@@ -16,19 +21,25 @@ const AddCustomers = () => {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  // const addCustomer = async () => {
-  //   try {
-  //     const res = await axios.post("http://localhost:5000/products/", {
-  //       name: productName,
-  //       price: productPrice,
-  //       description: productDesc,
-  //       lastUpdateBy: loggedInUser.id,
-  //       lastUpdateDate: new Date(),
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const addCustomer = async () => {
+    try {
+      const res = await axios.post("http://localhost:5000/customers/", {
+        ...formData,
+        lastUpdateBy: loggedInUser.id,
+        lastUpdateDate: new Date(),
+      });
+      if (res.status === 201) {
+        console.log(res.data.msg);
+        setFormData(initialFormState);
+        // //display toast message
+        // toastMessage(res.data.msg);
+        // setFormData(initialFormState);
+        // setTimeout(() => navigate("/customers"), 1000);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,6 +51,7 @@ const AddCustomers = () => {
     // console.log("Form Data:", formValues);
     */
     console.log("State Data:", formData);
+    addCustomer();
   };
   return (
     <div className="relative m-4 h-full sm:m-10">
