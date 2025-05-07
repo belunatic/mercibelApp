@@ -12,11 +12,11 @@ const customerSchema = new mongoose.Schema({
 		trim: true,
 	},
 	contactEmail: {
-		type: string,
+		type: String,
 		required: true,
 	},
 	contactPhone: {
-		type: string,
+		type: String,
 		required: true,
 	},
 	contactName2: {
@@ -24,10 +24,10 @@ const customerSchema = new mongoose.Schema({
 		trim: true,
 	},
 	contactEmail2: {
-		type: string,
+		type: String,
 	},
 	contactPhone2: {
-		type: string,
+		type: String,
 	},
 	customerAddress: {
 		type: String,
@@ -35,23 +35,22 @@ const customerSchema = new mongoose.Schema({
 		required: true,
 	},
 	customerType: {
-		type: string,
+		type: String,
 		required: true,
 		enum: ["Retailer", "Business", "Wholesaler", "Distributor", "Other"],
 	},
-	CustomerRegion: {
-		type: string,
+	customerRegion: {
+		type: String,
 		required: true,
 		trim: true,
 	},
 
-	CustomerCountry: {
+	customerCountry: {
 		type: String,
 		trim: true,
 		required: true,
 		default: "Tanzania",
 	},
-
 	lastUpdateDate: {
 		type: Date,
 		default: Date.now,
@@ -67,6 +66,6 @@ const customerSchema = new mongoose.Schema({
 	},
 });
 
-const Customer = mongoose.model("Customer", productSchema);
+const Customer = mongoose.model("Customer", customerSchema);
 
 module.exports = Customer;
