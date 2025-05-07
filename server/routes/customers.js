@@ -4,15 +4,15 @@ const router = express.Router();
 const customerController = require("../controllers/customerController");
 const { ensureAuth } = require("../middleware/authMiddleware");
 
-// //get All Products
-// router.get("/", ensureAuth, productsController.getProducts);
-//Create a Product
+//get All customer
+router.get("/", ensureAuth, customerController.getCustomer);
+// Create a Product
 router.post("/", ensureAuth, customerController.newCustomer);
-// //Edit a Product
-// router.put("/:id", ensureAuth, productsController.editProduct);
-// //Delete a Product
-// router.delete("/:id", ensureAuth, productsController.deleteProduct);
-// //Get a Product by ID
-// router.get("/:id", ensureAuth, productsController.getProductById);
+// //Edit a CUstomer
+// router.put("/:id", ensureAuth, customerController.editCUstomer);
+// //Delete a CUstomer
+// router.delete("/:id", ensureAuth, customerController.deleteCUstomer);
+// //Get a CUstomer by ID
+// router.get("/:id", ensureAuth, customerController.getCUstomerById);
 
 module.exports = router;
