@@ -21,6 +21,7 @@ const Products = () => {
         setData(res.data);
         setLoading(false);
       } catch (err) {
+        toastMessage("Error fetching Products", false);
         console.log(err);
       }
     };
