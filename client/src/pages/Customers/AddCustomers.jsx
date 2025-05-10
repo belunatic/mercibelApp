@@ -17,7 +17,7 @@ const AddCustomers = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name, value);
+    // console.log(name, value);
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 

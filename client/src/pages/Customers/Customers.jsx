@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ToastUtil from "../../util/ToastUtil";
 import axios from "axios";
 import { UseAuthContext } from "../../context/AuthContext";
+import AddItemButton from "../../util/AddItemButton";
 
 const Customers = () => {
   const { toastMessage } = UseAuthContext();
@@ -132,7 +133,10 @@ const Customers = () => {
       <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800 dark:text-white">
         {loading ? "Loading..." : displayCustomers()}
       </div>
+      {/* display the toast message */}
       <ToastUtil />
+      {/* display the add button */}
+      <AddItemButton linkTo="/addCustomer" />
     </>
   );
 };
