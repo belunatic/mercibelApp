@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import ToastUtil from "../../util/ToastUtil";
 import axios from "axios";
 import { UseAuthContext } from "../../context/AuthContext";
@@ -7,7 +6,6 @@ import AddItemButton from "../../util/AddItemButton";
 
 const Customers = () => {
   const { toastMessage } = UseAuthContext();
-  const navigate = useNavigate();
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
 
