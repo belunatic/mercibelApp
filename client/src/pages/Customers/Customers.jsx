@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ToastUtil from "../../util/ToastUtil";
 import axios from "axios";
+import { UseAuthContext } from "../../context/AuthContext";
 
 const Customers = () => {
+  const { toastMessage } = UseAuthContext();
+  const navigate = useNavigate();
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -15,6 +18,7 @@ const Customers = () => {
         setCustomers(data);
         setLoading(false);
       } catch (error) {
+        toastMessage("Error fetching Customer", false);
         console.error("Error fetching customers:", error);
       }
     };
