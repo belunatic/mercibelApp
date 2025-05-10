@@ -31,6 +31,7 @@ const Customers = () => {
         {customers.map((customer) => (
           <div
             id={customer._id}
+            key={customer.id}
             class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
           >
             <a href="#">
