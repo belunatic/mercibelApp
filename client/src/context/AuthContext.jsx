@@ -48,8 +48,11 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   //handle the Toast Alert messages
-  const toastMessage = (msg) => {
-    toast.info(msg, { style: { background: "#FFF", color: "#00A63E" } });
+  const toastMessage = (msg, autoClose = true) => {
+    toast.info(msg, {
+      style: { background: "#FFF", color: "#00A63E" },
+      autoClose: autoClose,
+    });
   };
 
   return (
