@@ -31,10 +31,10 @@ const AddCustomers = () => {
       if (res.status === 201) {
         console.log(res.data.msg);
         setFormData(initialFormState);
-        // //display toast message
-        // toastMessage(res.data.msg);
-        // setFormData(initialFormState);
-        // setTimeout(() => navigate("/customers"), 1000);
+        //display toast message
+        toastMessage(res.data.msg);
+        setFormData(initialFormState);
+        setTimeout(() => navigate("/customers"), 1000);
       }
     } catch (err) {
       console.log(err);
