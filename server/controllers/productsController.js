@@ -8,13 +8,13 @@ module.exports = {
 	}),
 	createProduct: asyncHandler(async (req, res) => {
 		let data = await Product.create(req.body);
-		console.log(data);
+		// console.log(data);
 		if (data) {
 			res.status(201).json({ msg: "Product Added" });
 		}
 	}),
 	editProduct: asyncHandler(async (req, res) => {
-		console.log("These are", req.body, req.user.id);
+		// console.log("These are", req.body, req.user.id);
 		let data = await Product.findByIdAndUpdate(req.params.id, {
 			$set: {
 				...req.body,
@@ -22,7 +22,7 @@ module.exports = {
 				lastUpdateBy: req.user.id,
 			},
 		});
-		console.log("This is data", data);
+		// console.log("This is data", data);
 		if (data) {
 			res.status(201).json({ msg: "Product Updated" });
 		} else {
