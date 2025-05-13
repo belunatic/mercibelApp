@@ -12,7 +12,7 @@ const Customers = () => {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const res = await axios("http://localhost:5000/customers");
+        const res = await axios("http://localhost:5000/customers/");
         const data = await res.data;
         setCustomers(data);
         setLoading(false);
