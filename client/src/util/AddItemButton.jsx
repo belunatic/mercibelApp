@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const AddItem = ({ linkTo }) => {
+const AddItem = ({ linkTo, title }) => {
   return (
     <div class="fixed right-4 bottom-20">
       <NavLink to={linkTo}>
-        <button class="cursor-pointer rounded-full bg-green-700 px-2 py-2 font-bold text-white shadow-lg hover:bg-green-600">
+        <button class="group flex cursor-pointer rounded-full bg-green-700 px-3 py-2 font-bold text-white shadow-lg hover:gap-2 hover:bg-green-600">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -20,6 +20,9 @@ const AddItem = ({ linkTo }) => {
               d="M12 4.5v15m7.5-7.5h-15"
             />
           </svg>
+          <span className="collapse h-0 w-0 transition-all duration-0 group-hover:visible group-hover:w-auto">
+            {`Add ${title}`}
+          </span>
         </button>
       </NavLink>
     </div>
