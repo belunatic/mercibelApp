@@ -3,11 +3,16 @@ import ToastUtil from "../../util/ToastUtil";
 import axios from "axios";
 import { UseAuthContext } from "../../context/AuthContext";
 import AddItemButton from "../../util/AddItemButton";
+import Modal from "../../util/Modal";
+
+import { NavLink } from "react-router-dom";
 
 const Customers = () => {
   const { toastMessage } = UseAuthContext();
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modal, setModal] = useState(false);
+  const [deletedItem, setDeletedItem] = useState(null);
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -24,6 +29,35 @@ const Customers = () => {
 
     fetchCustomers();
   }, []);
+
+  //open confirmation modal and set the deleted Item
+  // to be deleted when the user confirms the deletion
+  const openModal = (e, item) => {
+    //prevent the default action of a link from being triggered
+    e.preventDefault();
+    console.log(item);
+    setModal(true);
+    setDeletedItem(item);
+  };
+
+  const deleteCustomer = async (item) => {
+    const { _id, customerName } = item;
+    //if no id is found do nothing
+    if (!_id) return;
+    try {
+      const res = await axios.delete(`http://localhost:5000/customers/${_id}`);
+      if (res.status === 200 || res.status === 201) {
+        //display toast message
+        toastMessage(`Customer ${customerName} deleted successfully`);
+        setCustomers(customers.filter((item) => item._id !== _id));
+        //close modal
+        setModal(false);
+      }
+    } catch (err) {
+      toastMessage("Error deleting customer");
+      console.log(err);
+    }
+  };
 
   const displayCustomers = () => {
     return (
@@ -42,7 +76,8 @@ const Customers = () => {
               </a>
               <div className="flex gap-4">
                 <a
-                  href="#"
+                  NavLink
+                  to={`/editCustomer/${customer._id}`}
                   className="cursor-pointer text-green-500 hover:text-green-300"
                 >
                   <svg
@@ -61,7 +96,7 @@ const Customers = () => {
                   </svg>
                 </a>
                 <a
-                  href="#"
+                  onClick={(e) => openModal(e, customer)}
                   className="cursor-pointer text-red-500 hover:text-red-300"
                 >
                   <svg
@@ -171,6 +206,15 @@ const Customers = () => {
 
   return (
     <>
+      {modal && (
+        <Modal
+          openModal={modal}
+          closeModal={() => setModal(false)}
+          confirmFunction={() => deleteCustomer(deletedItem)}
+        >
+          Are ou sure you want to delete this product?
+        </Modal>
+      )}
       <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800 dark:text-white">
         {loading ? "Loading..." : displayCustomers()}
       </div>
