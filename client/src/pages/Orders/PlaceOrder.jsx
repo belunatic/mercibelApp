@@ -10,12 +10,14 @@ const PlaceOrder = () => {
   //users input
   const [customerSelected, setCustomerSelected] = useState({});
 
+  //retrieve the Customers
   useEffect(() => {
-    const fetchBusinessName = async () => {
+    const fetchCustomerName = async () => {
       try {
         const res = await axios.get("http://localhost:5000/customers/");
         setLoadingCustomer(false);
         setCustomerNames([...res.data]);
+        //set the a default selected item
         setCustomerSelected((prevState) => ({
           ...prevState,
           id: res.data[0]._id,
@@ -28,8 +30,17 @@ const PlaceOrder = () => {
       }
     };
 
-    fetchBusinessName();
+    fetchCustomerName();
   }, []);
+
+  //Customer select customer change
+  const customerSelectChangeHandle = (event) => {
+    setCustomerSelected({
+      //**** find a way to get the id */
+      customerName: event.target.value,
+    });
+    console.log(customerSelected, customerSelected.id);
+  };
 
   // Customer Name Select Input
   const displayCustomerNameSelect = () => {
@@ -45,8 +56,8 @@ const PlaceOrder = () => {
           name="customerName"
           id="customerName"
           className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
-          // onChange={handleChange}
-          value={customerNames[0].customerName || ""}
+          onChange={customerSelectChangeHandle}
+          value={customerSelected["customerName"] || ""}
           required
         >
           {/* set up the options */}
