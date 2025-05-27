@@ -1,8 +1,8 @@
 // server/routes/products.js
 const express = require("express");
 const router = express.Router();
-const customerController = require("../controllers/customerController");
 const { ensureAuth } = require("../middleware/authMiddleware");
+const customerController = require("../controllers/customerController");
 
 //get All customer
 router.get("/", ensureAuth, customerController.getCustomer);
