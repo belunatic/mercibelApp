@@ -6,6 +6,7 @@ const PlaceOrder = () => {
   const [loadingProducts, setLoadingProducts] = useState(true);
   const [products, setProducts] = useState([]);
   const [customerNames, setCustomerNames] = useState([]);
+  const [orderList, setOrderList] = useState({});
 
   //users input
   const [customerSelected, setCustomerSelected] = useState({});
@@ -33,13 +34,36 @@ const PlaceOrder = () => {
     fetchCustomerName();
   }, []);
 
+  //retrieve the products
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/products/");
+        setLoadingProducts(false);
+        setProducts([...res.data]);
+        console.log("These are the products", products);
+      } catch (err) {
+        console.log("Error fetching products", err);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   //Customer select customer change
   const customerSelectChangeHandle = (event) => {
     setCustomerSelected({
       //**** find a way to get the id */
       customerName: event.target.value,
     });
-    console.log(customerSelected, customerSelected.id);
+    console.log(customerSelected, customerSelected.customerName);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    console.log(formData);
+    console.log("****", customerSelected);
   };
 
   // Customer Name Select Input
@@ -76,11 +100,29 @@ const PlaceOrder = () => {
       </div>
     );
   };
+
+  //display the products
+  const displayProducts = () => {
+    return (
+      <div>
+        {products.map((product) => {
+          return <p key={product._id}>{product.name}</p>;
+        })}
+        )
+      </div>
+    );
+  };
+
+  //handle Order List
+  const handleOrderList = () => {};
+  //Output in front-end
   return (
     <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800 dark:text-white">
-      <form>
-        {loadingCustomer ? "LoadingCustomer" : displayCustomerNameSelect()}
+      <form onSubmit={handleSubmit}>
+        {loadingCustomer ? "Loading Customer" : displayCustomerNameSelect()}
+        <button>Submit</button>
       </form>
+      {loadingProducts ? "Loading Products" : displayProducts()}
     </div>
   );
 };
