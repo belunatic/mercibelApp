@@ -6,7 +6,7 @@ const PlaceOrder = () => {
   const [loadingProducts, setLoadingProducts] = useState(true);
   const [products, setProducts] = useState([]);
   const [customerNames, setCustomerNames] = useState([]);
-  const [orderList, setOrderList] = useState({});
+  const [orderList, setOrderList] = useState([]);
 
   //users input
   const [customerSelected, setCustomerSelected] = useState({});
@@ -106,15 +106,38 @@ const PlaceOrder = () => {
     return (
       <div>
         {products.map((product) => {
-          return <p key={product._id}>{product.name}</p>;
+          return (
+            <p key={product._id} onClick={() => handleOrderList(product)}>
+              {product.name}
+            </p>
+          );
         })}
-        )
       </div>
     );
   };
 
-  //handle Order List
-  const handleOrderList = () => {};
+  // handle Order List
+  const handleOrderList = (productObj) => {
+    const { _id, name, price } = productObj;
+    if (!orderList.length) {
+      setOrderList((prevState) => [
+        ...prevState,
+        { id: _id, name, price, count: 1 },
+      ]);
+    } else {
+      setOrderList(
+        orderList.map((item) => {
+          if (item.id === _id) {
+            console.log(item.count);
+            return { ...item, count: item.count + 1 };
+          } else {
+            return { id: _id, name, price, count: 1 };
+          }
+        }),
+      );
+    }
+    console.log("This is the list ", orderList);
+  };
   //Output in front-end
   return (
     <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800 dark:text-white">
@@ -123,6 +146,13 @@ const PlaceOrder = () => {
         <button>Submit</button>
       </form>
       {loadingProducts ? "Loading Products" : displayProducts()}
+      {orderList.map((item) => (
+        <p key={item.id}>
+          {item.name}
+          <br />
+          Count:{item.count}
+        </p>
+      ))}
     </div>
   );
 };
