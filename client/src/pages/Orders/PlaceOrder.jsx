@@ -119,22 +119,24 @@ const PlaceOrder = () => {
   // handle Order List
   const handleOrderList = (productObj) => {
     const { _id, name, price } = productObj;
-    if (!orderList.length) {
-      setOrderList((prevState) => [
-        ...prevState,
-        { id: _id, name, price, count: 1 },
-      ]);
-    } else {
+
+    const index = orderList.findIndex((item) => item.id === _id);
+
+    if (index !== -1) {
       setOrderList(
         orderList.map((item) => {
           if (item.id === _id) {
             console.log(item.count);
             return { ...item, count: item.count + 1 };
-          } else {
-            return { id: _id, name, price, count: 1 };
           }
+          return item;
         }),
       );
+    } else {
+      setOrderList((prevState) => [
+        ...prevState,
+        { id: _id, name, price, count: 1 },
+      ]);
     }
     console.log("This is the list ", orderList);
   };
