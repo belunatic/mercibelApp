@@ -109,12 +109,16 @@ const PlaceOrder = () => {
   //display the products
   const displayProducts = () => {
     return (
-      <div>
+      <div className="flex flex-wrap justify-start gap-2 py-4">
         {products.map((product) => {
           return (
-            <p key={product._id} onClick={() => handleOrderList(product)}>
+            <div
+              className="w-1/2 border-2 p-4 md:w-1/4"
+              key={product._id}
+              onClick={() => handleOrderList(product)}
+            >
               {product.name}
-            </p>
+            </div>
           );
         })}
       </div>
@@ -162,15 +166,33 @@ const PlaceOrder = () => {
         {loadingCustomer ? "Loading Customer" : displayCustomerNameSelect()}
         <button>Submit</button>
       </form>
-      {loadingProducts ? "Loading Products" : displayProducts()}
-      {orderList.map((item) => (
-        <p key={item.id}>
-          {item.name} - {item.price}
-          <br />
-          Count:{item.count}
-        </p>
-      ))}
-      <p>Total: {totalOrder}</p>
+      <div className="flex justify-between gap-2">
+        <div className="my-4 w-1/2">
+          <h3 className="text-xl font-semibold">Products</h3>
+          {loadingProducts ? "Loading Products" : displayProducts()}
+        </div>
+        <div className="w-1/2 py-4">
+          <h3 className="text-xl font-semibold">Order List:</h3>
+          <table className="w-full table-auto py-4 text-left">
+            <tr>
+              <th colSpan={2}>Item</th>
+              <th>Price</th>
+              <th>Quantity</th>
+            </tr>
+            {orderList.map((item) => (
+              <tr key={item._id}>
+                <td colSpan={2}>{item.name}</td>
+                <td>Tsh {item.price}</td>
+                <td>{item.count}</td>
+              </tr>
+            ))}
+            <tr className="mx-10 border-t-2">
+              <td colSpan={3}>Total</td>
+              <td>Tsh {totalOrder}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };
