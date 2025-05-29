@@ -7,6 +7,7 @@ const PlaceOrder = () => {
   const [products, setProducts] = useState([]);
   const [customerNames, setCustomerNames] = useState([]);
   const [orderList, setOrderList] = useState([]);
+  const [totalOrder, setTotalOrder] = useState(0);
 
   //users input
   const [customerSelected, setCustomerSelected] = useState({});
@@ -49,6 +50,10 @@ const PlaceOrder = () => {
 
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    return getTotal();
+  }, [orderList]);
 
   //Customer select customer change
   const customerSelectChangeHandle = (event) => {
@@ -137,13 +142,19 @@ const PlaceOrder = () => {
     }
     //if item not found added it to the orderList
     else {
-      setOrderList((prevState) => [
-        ...prevState,
-        { id: _id, name, price, count: 1 },
-      ]);
+      setOrderList([...orderList, { id: _id, name, price, count: 1 }]);
     }
-    console.log("This is the list ", orderList);
   };
+
+  //get the total of the order
+  const getTotal = () => {
+    const total = orderList.reduce((acc, cur) => {
+      console.log(acc);
+      return acc + Number(cur.price) * cur.count;
+    }, 0);
+    setTotalOrder(total);
+  };
+
   //Output in front-end
   return (
     <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800 dark:text-white">
@@ -154,11 +165,12 @@ const PlaceOrder = () => {
       {loadingProducts ? "Loading Products" : displayProducts()}
       {orderList.map((item) => (
         <p key={item.id}>
-          {item.name}
+          {item.name} - {item.price}
           <br />
           Count:{item.count}
         </p>
       ))}
+      <p>Total: {totalOrder}</p>
     </div>
   );
 };
