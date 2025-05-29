@@ -119,20 +119,24 @@ const PlaceOrder = () => {
   // handle Order List
   const handleOrderList = (productObj) => {
     const { _id, name, price } = productObj;
-
+    //find the index of product
     const index = orderList.findIndex((item) => item.id === _id);
-
+    //if found
+    //get the count and increase it by 1
     if (index !== -1) {
       setOrderList(
         orderList.map((item) => {
           if (item.id === _id) {
-            console.log(item.count);
+            //update the item count
             return { ...item, count: item.count + 1 };
           }
+          //if not matched return the item
           return item;
         }),
       );
-    } else {
+    }
+    //if item not found added it to the orderList
+    else {
       setOrderList((prevState) => [
         ...prevState,
         { id: _id, name, price, count: 1 },
