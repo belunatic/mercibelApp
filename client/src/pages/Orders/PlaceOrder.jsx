@@ -159,6 +159,11 @@ const PlaceOrder = () => {
     setTotalOrder(total);
   };
 
+  //update the the product count
+  const handleProductCount = (index, count) => {
+    orderList[index] = { ...count };
+  };
+
   //Output in front-end
   return (
     <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800 dark:text-white">
@@ -179,11 +184,18 @@ const PlaceOrder = () => {
               <th>Price</th>
               <th>Quantity</th>
             </tr>
-            {orderList.map((item) => (
+            {orderList.map((item, index) => (
               <tr key={item._id}>
                 <td colSpan={2}>{item.name}</td>
                 <td>Tsh {item.price}</td>
-                <td>{item.count}</td>
+                <td>
+                  <input
+                    type="number"
+                    name="productCount"
+                    onChange={() => handleProductCount(index, item.count)}
+                    value={item.count || 0}
+                  />
+                </td>
               </tr>
             ))}
             <tr className="mx-10 border-t-2">
