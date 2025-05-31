@@ -160,8 +160,11 @@ const PlaceOrder = () => {
   };
 
   //update the the product count
-  const handleProductCount = (index, count) => {
-    orderList[index] = { ...count };
+  const handleProductCount = (e, index, item) => {
+    //use the index to update the product quantity
+    orderList[index] = { ...item, count: e.target.value };
+    //then set the new orderlist
+    setOrderList([...orderList]);
   };
 
   //Output in front-end
@@ -192,7 +195,7 @@ const PlaceOrder = () => {
                   <input
                     type="number"
                     name="productCount"
-                    onChange={() => handleProductCount(index, item.count)}
+                    onChange={(e) => handleProductCount(e, index, item)}
                     value={item.count || 0}
                   />
                 </td>
