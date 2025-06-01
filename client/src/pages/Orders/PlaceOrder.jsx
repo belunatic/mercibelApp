@@ -56,19 +56,17 @@ const PlaceOrder = () => {
   }, [orderList]);
 
   //Customer select customer change
-  const customerSelectChangeHandle = (event) => {
-    setCustomerSelected({
-      //**** find a way to get the id */
-      customerName: event.target.value,
-    });
-    console.log(customerSelected, customerSelected.customerName);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    console.log(formData);
-    console.log("****", customerSelected);
+  const customerSelectChangeHandle = (e) => {
+    //find the customer selected using it ID
+    const customerNameOrder = customerNames.find(
+      (customer) => customer._id === e.target.value,
+    );
+    //update the customer selected state
+    setCustomerSelected((prevState) => ({
+      ...prevState,
+      id: customerNameOrder._id,
+      customerName: customerNameOrder.customerName,
+    }));
   };
 
   // Customer Name Select Input
@@ -77,26 +75,22 @@ const PlaceOrder = () => {
       <div className="col-span-6 sm:col-span-2">
         <label
           htmlFor="customerName"
-          className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          className="mb-2 block text-sm text-xl font-medium font-semibold text-gray-900 dark:text-white"
         >
-          Type
+          Customer
         </label>
         <select
           name="customerName"
           id="customerName"
           className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
           onChange={customerSelectChangeHandle}
-          value={customerSelected["customerName"] || ""}
+          value={customerSelected["id"] || ""}
           required
         >
           {/* set up the options */}
           {customerNames.map((item) => {
             return (
-              <option
-                key={item._id}
-                data-id={item._id}
-                value={item.customerName}
-              >
+              <option key={item._id} value={item._id}>
                 {item.customerName}
               </option>
             );
@@ -113,7 +107,7 @@ const PlaceOrder = () => {
         {products.map((product) => {
           return (
             <div
-              className="w-1/2 border-2 p-4 md:w-1/4"
+              className="w-1/2 cursor-pointer border-2 p-4 md:w-1/4"
               key={product._id}
               onClick={() => handleOrderList(product)}
             >
@@ -167,13 +161,19 @@ const PlaceOrder = () => {
     setOrderList([...orderList]);
   };
 
+  const handleDeleteProductItem = (id) => {
+    console.log(orderList);
+    console.log(id);
+    const updateOrderList = orderList.filter((item) => item.id !== id);
+    console.log(updateOrderList);
+    setOrderList([...updateOrderList]);
+  };
+
   //Output in front-end
   return (
     <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800 dark:text-white">
-      <form onSubmit={handleSubmit}>
-        {loadingCustomer ? "Loading Customer" : displayCustomerNameSelect()}
-        <button>Submit</button>
-      </form>
+      {/* {show the client dropdown list} */}
+      {loadingCustomer ? "Loading Customer" : displayCustomerNameSelect()}
       <div className="flex justify-between gap-2">
         <div className="my-4 w-1/2">
           <h3 className="text-xl font-semibold">Products</h3>
@@ -191,7 +191,7 @@ const PlaceOrder = () => {
               <tr key={item._id}>
                 <td colSpan={2}>{item.name}</td>
                 <td>Tsh {item.price}</td>
-                <td>
+                <td className="flex gap-x-2">
                   <input
                     type="number"
                     name="productCount"
@@ -199,6 +199,25 @@ const PlaceOrder = () => {
                     value={item.count || 0}
                     className="border-1 ps-2"
                   />
+                  <a
+                    onClick={() => handleDeleteProductItem(item.id)}
+                    className="cursor-pointer text-red-500 hover:text-red-300"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="size-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                      />
+                    </svg>
+                  </a>
                 </td>
               </tr>
             ))}
