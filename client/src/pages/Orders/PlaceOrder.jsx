@@ -181,7 +181,7 @@ const PlaceOrder = () => {
         </div>
         <div className="w-1/2 py-4">
           <h3 className="text-xl font-semibold">Order List:</h3>
-          <table className="w-full table-auto py-4 text-left">
+          <table className="w-full table-auto border-separate border-spacing-y-2.5 py-4 text-left">
             <tr>
               <th colSpan={2}>Item</th>
               <th>Price</th>
@@ -197,13 +197,16 @@ const PlaceOrder = () => {
                     name="productCount"
                     onChange={(e) => handleProductCount(e, index, item)}
                     value={item.count || 0}
+                    className="border-1 ps-2"
                   />
                 </td>
               </tr>
             ))}
             <tr className="mx-10 border-t-2">
-              <td colSpan={3}>Total</td>
-              <td>Tsh {totalOrder}</td>
+              <td colSpan={3} className="font-bold">
+                Total
+              </td>
+              <td className="border-t-2">Tsh {totalOrder}</td>
             </tr>
           </table>
         </div>
