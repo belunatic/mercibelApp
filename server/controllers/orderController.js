@@ -2,7 +2,7 @@ const Order = require("../models/Order");
 const asyncHandler = require("express-async-handler");
 
 module.exports = {
-	getOrder: asyncHandler(async (req, res) => {
+	getAllOrder: asyncHandler(async (req, res) => {
 		let data = await Order.find();
 		res.json(data);
 	}),
