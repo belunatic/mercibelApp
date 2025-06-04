@@ -221,6 +221,16 @@ const PlaceOrder = () => {
     setOrderList([...updateOrderList]);
   };
 
+  const handleSubmitOrderList = () => {
+    const finalOrderList = {
+      ...customerSelected,
+      orderList: [...orderList],
+      total: totalOrder,
+      delivered: false,
+    };
+    console.log(finalOrderList);
+  };
+
   //Output in front-end
   return (
     <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800 dark:text-white">
@@ -235,6 +245,14 @@ const PlaceOrder = () => {
           <h3 className="text-xl font-semibold">Order List:</h3>
           {displayOrderList()}
         </div>
+      </div>
+      <div className="flex justify-center">
+        <button
+          className="m-4 w-1/2 bg-green-500 px-8 py-4"
+          onClick={handleSubmitOrderList}
+        >
+          Submit Order
+        </button>
       </div>
     </div>
   );
