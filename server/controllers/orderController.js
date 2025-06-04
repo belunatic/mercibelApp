@@ -7,9 +7,6 @@ module.exports = {
 		res.json(data);
 	}),
 	newOrder: asyncHandler(async (req, res) => {
-		console.log("the body", req.body);
-		console.log("the user", req.user.id);
-		req.body.createBy = req.user.id;
 		let data = Order.create(req.body);
 		if (data) {
 			console.log(data);
