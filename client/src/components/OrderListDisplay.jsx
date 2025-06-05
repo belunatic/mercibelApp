@@ -10,7 +10,7 @@ const OrderListDisplay = ({
     <table className="w-full table-auto border-separate border-spacing-y-2.5 py-4 text-left">
       <thead>
         <tr>
-          <th colSpan={2}>Item</th>
+          <th colSpan={2}>Items</th>
           <th>Price</th>
           <th>Quantity</th>
         </tr>

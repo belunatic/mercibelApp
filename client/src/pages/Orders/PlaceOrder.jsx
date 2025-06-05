@@ -209,11 +209,18 @@ const PlaceOrder = () => {
       const res = await axios.post("http://localhost:5000/order/", {
         ...finalOrderList,
       });
-      if (res.status === 201) {
-        console.log(res.data.msg);
+      if (res.status === 200 || res.status === 201) {
+        //display toast message
+        toastMessage(
+          `Order to ${customerSelected.customerName} has been place`,
+        );
+        setOrderList([]);
+        //close modal
+        setModal(false);
       }
     } catch (err) {
       console.log(err);
+      toastMessage(`Error Submitting your Order`);
     }
     console.log(finalOrderList);
   };
@@ -258,6 +265,8 @@ const PlaceOrder = () => {
           </div>
         )}
       </div>
+      {/* display the toast message */}
+      <ToastUtil />
     </>
   );
 };

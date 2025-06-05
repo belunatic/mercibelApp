@@ -52,8 +52,8 @@ const Modal = ({
             </button>
           </div>
           <div className="pt-2 pb-4">
-            <p className="font-bold">Customer</p>
-            <p className="mb-4 text-xl">{customerName}</p>
+            <p className="text-xs font-bold">Customer</p>
+            <p className="mb-4 text-2xl">{customerName}</p>
             <OrderListDisplay
               orderList={orderList}
               totalOrder={totalOrder}
