@@ -119,11 +119,11 @@ const PlaceOrder = () => {
   //display the products
   const displayProducts = () => {
     return (
-      <div className="flex flex-wrap justify-start gap-2 py-4">
+      <div className="flex flex-wrap justify-start gap-2 py-4 md:justify-start">
         {products.map((product) => {
           return (
             <div
-              className="w-1/2 cursor-pointer border-2 p-4 md:w-1/4"
+              className="w-[120px] cursor-pointer border-2 p-4 sm:w-[150px] md:w-1/4"
               key={product._id}
               onClick={() => handleOrderList(product)}
             >
@@ -242,12 +242,12 @@ const PlaceOrder = () => {
       <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800 dark:text-white">
         {/* {show the client dropdown list} */}
         {loadingCustomer ? "Loading Customer" : displayCustomerNameSelect()}
-        <div className="flex justify-between gap-2">
-          <div className="my-4 w-1/2">
+        <div className="flex flex-col justify-between gap-2 md:flex-row">
+          <div className="my-4 w-full md:w-1/2">
             <h3 className="text-xl font-semibold">Products</h3>
             {loadingProducts ? "Loading Products" : displayProducts()}
           </div>
-          <div className="w-1/2 py-4">
+          <div className="w-full py-4 md:w-1/2">
             <h3 className="text-xl font-semibold">Order List:</h3>
             {displayOrderList()}
           </div>
