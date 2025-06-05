@@ -3,6 +3,7 @@ import axios from "axios";
 import { UseAuthContext } from "../../context/AuthContext";
 import ToastUtil from "../../util/ToastUtil";
 import OrderListDisplay from "../../components/OrderListDisplay";
+import OrderModal from "../../util/OrderModal";
 
 const PlaceOrder = () => {
   const { loggedInUser, toastMessage } = UseAuthContext();
@@ -13,6 +14,7 @@ const PlaceOrder = () => {
   const [customerNames, setCustomerNames] = useState([]);
   const [orderList, setOrderList] = useState([]);
   const [totalOrder, setTotalOrder] = useState(0);
+  const [modal, setModal] = useState(false);
 
   //users input
   const [customerSelected, setCustomerSelected] = useState({});
@@ -59,6 +61,15 @@ const PlaceOrder = () => {
   useEffect(() => {
     return getTotal();
   }, [orderList]);
+
+  //open confirmation modal and set the deleted Item
+  // to be deleted when the user confirms the deletion
+  const openModal = (e, item) => {
+    //prevent the default action of a link from being triggered
+    e.preventDefault();
+    console.log(item);
+    setModal(true);
+  };
 
   //Customer select customer change
   const customerSelectChangeHandle = (e) => {
@@ -209,32 +220,45 @@ const PlaceOrder = () => {
 
   //Output in front-end
   return (
-    <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800 dark:text-white">
-      {/* {show the client dropdown list} */}
-      {loadingCustomer ? "Loading Customer" : displayCustomerNameSelect()}
-      <div className="flex justify-between gap-2">
-        <div className="my-4 w-1/2">
-          <h3 className="text-xl font-semibold">Products</h3>
-          {loadingProducts ? "Loading Products" : displayProducts()}
-        </div>
-        <div className="w-1/2 py-4">
-          <h3 className="text-xl font-semibold">Order List:</h3>
-          {displayOrderList()}
-        </div>
-      </div>
-      {orderList.length === 0 ? (
-        ""
-      ) : (
-        <div className="flex justify-center">
-          <button
-            className="m-4 w-1/2 cursor-pointer bg-green-500 px-8 py-4"
-            onClick={handleSubmitOrderList}
-          >
-            Submit Order
-          </button>
-        </div>
+    <>
+      {modal && (
+        <OrderModal
+          openModal={modal}
+          closeModal={() => setModal(false)}
+          confirmFunction={() => handleSubmitOrderList()}
+          orderList={orderList}
+          totalOrder={totalOrder}
+          customerName={customerSelected.customerName}
+        ></OrderModal>
       )}
-    </div>
+
+      <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800 dark:text-white">
+        {/* {show the client dropdown list} */}
+        {loadingCustomer ? "Loading Customer" : displayCustomerNameSelect()}
+        <div className="flex justify-between gap-2">
+          <div className="my-4 w-1/2">
+            <h3 className="text-xl font-semibold">Products</h3>
+            {loadingProducts ? "Loading Products" : displayProducts()}
+          </div>
+          <div className="w-1/2 py-4">
+            <h3 className="text-xl font-semibold">Order List:</h3>
+            {displayOrderList()}
+          </div>
+        </div>
+        {orderList.length === 0 ? (
+          ""
+        ) : (
+          <div className="flex justify-center">
+            <button
+              className="m-4 w-1/2 cursor-pointer bg-green-700 px-8 py-4 hover:bg-green-600"
+              onClick={(e) => openModal(e)}
+            >
+              Submit Order
+            </button>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
