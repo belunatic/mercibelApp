@@ -59,6 +59,24 @@ const Modal = ({
               totalOrder={totalOrder}
             ></OrderListDisplay>
           </div>
+          <div className="flex gap-4 pb-4">
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                className="form-checkbox h-5 w-5 text-green-600"
+                // You may want to control this with state and pass props as needed
+              />
+              <span className="text-l font-medium">Order Paid</span>
+            </label>
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                className="form-checkbox h-5 w-5 text-green-600"
+                // You may want to control this with state and pass props as needed
+              />
+              <span className="text-l font-medium">Delivered</span>
+            </label>
+          </div>
           <div className="mt-4 flex justify-end space-x-4">
             <button
               className="cursor-pointer rounded bg-green-700 px-4 py-2 text-white hover:bg-green-600"
