@@ -35,6 +35,16 @@ const orderSchema = new mongoose.Schema({
 		type: Number,
 		require: true,
 	},
+	delivered: {
+		type: Boolean,
+		enum: [true, false],
+		default: false,
+	},
+	paid: {
+		type: Boolean,
+		enum: [true, false],
+		default: false,
+	},
 
 	createdBy: {
 		type: mongoose.Schema.Types.ObjectId,
