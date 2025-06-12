@@ -9,6 +9,8 @@ const Modal = ({
   totalOrder,
   customerName,
   confirmFunction,
+  handleConfirmCheckbox,
+  confirmCheckbox,
 }) => {
   const ref = useRef();
 
@@ -64,6 +66,10 @@ const Modal = ({
               <input
                 type="checkbox"
                 className="form-checkbox h-5 w-5 text-green-600"
+                id="orderPaid"
+                name="orderPaid"
+                checked={confirmCheckbox["orderPaid"]}
+                onChange={handleConfirmCheckbox}
                 // You may want to control this with state and pass props as needed
               />
               <span className="text-l font-medium">Order Paid</span>
@@ -72,6 +78,10 @@ const Modal = ({
               <input
                 type="checkbox"
                 className="form-checkbox h-5 w-5 text-green-600"
+                id="delivered"
+                name="delivered"
+                checked={confirmCheckbox["delivered"]}
+                onChange={handleConfirmCheckbox}
                 // You may want to control this with state and pass props as needed
               />
               <span className="text-l font-medium">Delivered</span>
