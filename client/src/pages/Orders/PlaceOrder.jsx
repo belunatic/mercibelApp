@@ -12,6 +12,10 @@ const PlaceOrder = () => {
   const [loadingProducts, setLoadingProducts] = useState(true);
   const [products, setProducts] = useState([]);
   const [customerNames, setCustomerNames] = useState([]);
+  const [confirmCheckbox, setConfirmCheckbox] = useState({
+    orderPaid: false,
+    delivered: false,
+  });
   const [orderList, setOrderList] = useState([]);
   const [totalOrder, setTotalOrder] = useState(0);
   const [modal, setModal] = useState(false);
@@ -169,6 +173,7 @@ const PlaceOrder = () => {
     setTotalOrder(total);
   };
 
+  //Display the Order list of Items
   const displayOrderList = () => {
     return (
       <OrderListDisplay
@@ -188,6 +193,7 @@ const PlaceOrder = () => {
     setOrderList([...orderList]);
   };
 
+  //delete a product
   const handleDeleteProductItem = (id) => {
     console.log(orderList);
     console.log(id);
@@ -196,13 +202,30 @@ const PlaceOrder = () => {
     setOrderList([...updateOrderList]);
   };
 
+  //handle the checkbox on the confirm Order Dialog
+  //checkbox for the Order Paid and Delivered
+  const handleConfirmCheckbox = (event) => {
+    console.log(event.target.name, [event.target.name], event.target.value);
+    const targetName = event.target.name;
+    setConfirmCheckbox({
+      ...confirmCheckbox,
+      [targetName]: event.target.checked,
+    });
+  };
+
+  useEffect(() => {
+    console.log("WOW!", confirmCheckbox);
+  }, [confirmCheckbox]);
+
+  //Confirm the order and save it to the database
   const handleSubmitOrderList = async () => {
     // construct the final order list
     const finalOrderList = {
       ...customerSelected,
       orderList: [...orderList],
       total: totalOrder,
-      delivered: false,
+      delivered: confirmCheckbox.delivered,
+      paid: confirmCheckbox.orderPaid,
       createdBy: loggedInUser.id,
     };
     try {
@@ -236,6 +259,8 @@ const PlaceOrder = () => {
           orderList={orderList}
           totalOrder={totalOrder}
           customerName={customerSelected.customerName}
+          handleConfirmCheckbox={handleConfirmCheckbox}
+          confirmCheckbox={confirmCheckbox}
         ></OrderModal>
       )}
 
