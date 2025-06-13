@@ -229,7 +229,7 @@ const PlaceOrder = () => {
       createdBy: loggedInUser.id,
     };
     try {
-      const res = await axios.post("http://localhost:5000/order/", {
+      const res = await axios.post("http://localhost:5000/orders/", {
         ...finalOrderList,
       });
       if (res.status === 200 || res.status === 201) {
