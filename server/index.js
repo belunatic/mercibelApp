@@ -25,7 +25,7 @@ connectDB();
 app.use("/user", authRoute);
 app.use("/products", productRoute);
 app.use("/customers", customerRoute);
-app.use("/order", OrderRoute);
+app.use("/orders", OrderRoute);
 
 app.listen(process.env.PORT, () => {
 	console.log("let get this party started 🐯");
