@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 
 module.exports = {
 	getAllOrder: asyncHandler(async (req, res) => {
-		let data = await Order.find();
+		let data = await Order.find().sort({ createdAt: -1 });
 		res.json(data);
 	}),
 	newOrder: asyncHandler(async (req, res) => {

@@ -43,7 +43,7 @@ const Orders = () => {
               <p className="text-l w-2/6 text-left font-semibold">
                 {order.customerName}
               </p>
-              <p className="text-l w-1/6 text-center font-semibold">
+              <p className="text-l w-1/6 self-center font-semibold">
                 {!order.paid ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
