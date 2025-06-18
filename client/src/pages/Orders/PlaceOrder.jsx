@@ -213,10 +213,6 @@ const PlaceOrder = () => {
     });
   };
 
-  useEffect(() => {
-    console.log("WOW!", confirmCheckbox);
-  }, [confirmCheckbox]);
-
   //Confirm the order and save it to the database
   const handleSubmitOrderList = async () => {
     // construct the final order list

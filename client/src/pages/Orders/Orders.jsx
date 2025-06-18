@@ -2,11 +2,23 @@ import { useEffect, useState } from "react";
 import ToastUtil from "../../util/ToastUtil";
 import axios from "axios";
 import { UseAuthContext } from "../../context/AuthContext";
+import OrderListDisplay from "../../components/OrderListDisplay";
+import OrderModal from "../../util/OrderModal";
 
 const Orders = () => {
   const { toastMessage, loggedInUser } = UseAuthContext();
   const [orders, setOrder] = useState([]);
   const [loading, setLoading] = useState(true);
+  //state for the modal
+  const [selectedOrderId, setSelectedOrderId] = useState("");
+  const [orderList, setOrderList] = useState([]);
+  const [totalOrder, setTotalOrder] = useState(0);
+  const [customerName, setCustomerName] = useState("");
+  const [confirmCheckbox, setConfirmCheckbox] = useState({
+    orderPaid: false,
+    delivered: false,
+  });
+  const [modal, setModal] = useState(false);
 
   // fetch Order from serve
   useEffect(() => {
@@ -25,6 +37,61 @@ const Orders = () => {
 
     fetchOrders();
   }, []);
+
+  //open confirmation modal and set the deleted Item
+  // to be deleted when the user confirms the deletion
+  const openModal = (e, item) => {
+    //setup the variables for the Modal
+    setSelectedOrderId(item._id);
+    setOrderList([...item.orderList]);
+    setTotalOrder(item.total);
+    setCustomerName(item.customerName);
+    setConfirmCheckbox({
+      ...confirmCheckbox,
+      orderPaid: item.paid,
+      delivered: item.delivered,
+    });
+    console.log(item);
+    setModal(true);
+  };
+
+  //handle the checkbox on the confirm Order Dialog
+  //checkbox for the Order Paid and Delivered
+  const handleConfirmCheckbox = (event) => {
+    console.log(event.target.name, [event.target.name], event.target.value);
+    const targetName = event.target.name;
+    setConfirmCheckbox({
+      ...confirmCheckbox,
+      [targetName]: event.target.checked,
+    });
+  };
+
+  //Confirm the order and save it to the database
+  const handleSubmitOrderList = async () => {
+    // // construct the final order list
+    // const finalOrderList = {
+    //   delivered: confirmCheckbox.delivered,
+    //   paid: confirmCheckbox.orderPaid,
+    //   updatedBy: loggedInUser.id,
+    // };
+    // try {
+    //   const res = await axios.post("http://localhost:5000/orders/", {
+    //     ...finalOrderList,
+    //   });
+    //   if (res.status === 200 || res.status === 201) {
+    //     //display toast message
+    //     toastMessage(`Order to updated`);
+    //     setOrderList([]);
+    //     //close modal
+    //     setModal(false);
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    //   toastMessage(`Error Submitting your Order`);
+    // }
+    // console.log(finalOrderList);
+    console.log(confirmCheckbox, selectedOrderId);
+  };
 
   //display Orders
   const displayOrder = () => {
@@ -120,6 +187,7 @@ const Orders = () => {
                     viewBox="0 0 24 24"
                     fill="green"
                     className="mx-auto size-6"
+                    onClick={(e) => openModal(e, order)}
                   >
                     <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z" />
                   </svg>
@@ -134,6 +202,18 @@ const Orders = () => {
 
   return (
     <>
+      {modal && (
+        <OrderModal
+          openModal={modal}
+          closeModal={() => setModal(false)}
+          confirmFunction={() => handleSubmitOrderList()}
+          orderList={orderList}
+          totalOrder={totalOrder}
+          customerName={customerName}
+          handleConfirmCheckbox={handleConfirmCheckbox}
+          confirmCheckbox={confirmCheckbox}
+        ></OrderModal>
+      )}
       <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800 dark:text-white">
         {loading ? <p>Loading</p> : displayOrder()}
       </div>
