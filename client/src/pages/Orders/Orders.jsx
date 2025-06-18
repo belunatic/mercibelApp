@@ -104,6 +104,7 @@ const Orders = () => {
             </th>
             <th className="w-1/6 px-4 py-2 text-xl font-semibold">Paid</th>
             <th className="w-1/6 px-4 py-2 text-xl font-semibold">Delivered</th>
+            <th className="w-1/6 px-4 py-2 text-xl font-semibold">Total</th>
             <th className="w-1/6 px-4 py-2 text-xl font-semibold">
               Order Date
             </th>
@@ -174,6 +175,9 @@ const Orders = () => {
                     />
                   </svg>
                 )}
+              </td>
+              <td className="px-4 py-2 text-center font-semibold">
+                {order.total}
               </td>
               <td className="px-4 py-2">
                 {order.createdAt
