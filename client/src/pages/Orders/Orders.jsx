@@ -29,27 +29,34 @@ const Orders = () => {
   //display Orders
   const displayOrder = () => {
     return (
-      <div className="flex flex-col justify-evenly gap-y-4">
-        <div className="flex border-b-2">
-          <p className="w-2/6 text-left text-xl font-semibold">Customer</p>
-          <p className="w-1/6 text-xl font-semibold">Paid</p>
-          <p className="w-1/6 text-xl font-semibold">Delivered</p>
-          <p className="w-1/6 text-xl font-semibold">Order Date</p>
-          <p className="w-1/6 text-xl font-semibold"></p>
-        </div>
-        {orders.map((order) => {
-          return (
-            <div className="flex border-b-1 pb-2">
-              <p className="text-l w-2/6 text-left font-semibold">
-                {order.customerName}
-              </p>
-              <p className="text-l w-1/6 self-center font-semibold">
+      <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+        <thead className="bg-gray-100 dark:bg-gray-700">
+          <tr>
+            <th className="w-2/6 px-4 py-2 text-left text-xl font-semibold">
+              Customer
+            </th>
+            <th className="w-1/6 px-4 py-2 text-xl font-semibold">Paid</th>
+            <th className="w-1/6 px-4 py-2 text-xl font-semibold">Delivered</th>
+            <th className="w-1/6 px-4 py-2 text-xl font-semibold">
+              Order Date
+            </th>
+            <th className="w-1/6 px-4 py-2 text-xl font-semibold"></th>
+          </tr>
+        </thead>
+        <tbody className="bg-white dark:bg-gray-800">
+          {orders.map((order, idx) => (
+            <tr
+              key={order._id || idx}
+              className="border-b dark:border-gray-700"
+            >
+              <td className="px-4 py-2 font-semibold">{order.customerName}</td>
+              <td className="px-4 py-2 text-center">
                 {!order.paid ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="red"
-                    className="size-6"
+                    className="mx-auto size-6"
                   >
                     <path
                       fillRule="evenodd"
@@ -62,7 +69,7 @@ const Orders = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="green"
-                    className="size-6"
+                    className="mx-auto size-6"
                   >
                     <path
                       fillRule="evenodd"
@@ -71,14 +78,14 @@ const Orders = () => {
                     />
                   </svg>
                 )}
-              </p>
-              <p className="text-l w-1/6 text-center font-semibold">
+              </td>
+              <td className="px-4 py-2 text-center">
                 {!order.delivered ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="red"
-                    className="size-6"
+                    className="mx-auto size-6"
                   >
                     <path
                       fillRule="evenodd"
@@ -91,7 +98,7 @@ const Orders = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="green"
-                    className="size-6"
+                    className="mx-auto size-6"
                   >
                     <path
                       fillRule="evenodd"
@@ -100,28 +107,28 @@ const Orders = () => {
                     />
                   </svg>
                 )}
-              </p>
-              <p className="text-l w-1/6 font-semibold">
+              </td>
+              <td className="px-4 py-2">
                 {order.createdAt
                   ? new Date(order.createdAt).toLocaleDateString("en-GB")
                   : ""}
-              </p>
-              <p className="text-l w-1/6 font-semibold">
+              </td>
+              <td className="px-4 py-2 text-center">
                 <button>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="green"
-                    className="size-6"
+                    className="mx-auto size-6"
                   >
                     <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z" />
                   </svg>
                 </button>
-              </p>
-            </div>
-          );
-        })}
-      </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     );
   };
 
