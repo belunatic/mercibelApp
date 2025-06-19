@@ -6,9 +6,11 @@ import OrderListDisplay from "../../components/OrderListDisplay";
 import OrderModal from "../../util/OrderModal";
 
 const Orders = () => {
-  const { toastMessage, loggedInUser } = UseAuthContext();
+  const { toastMessage } = UseAuthContext();
   const [orders, setOrder] = useState([]);
   const [loading, setLoading] = useState(true);
+  //a variable to refresh list after the update has occurred
+  const [refreshList, setRefreshList] = useState(false);
   //state for the modal
   const [selectedOrderId, setSelectedOrderId] = useState("");
   const [orderList, setOrderList] = useState([]);
@@ -30,13 +32,13 @@ const Orders = () => {
         setOrder(data);
         setLoading(false);
       } catch (error) {
-        toastMessage("Error fetching Customer", false);
-        console.error("Error fetching customers:", error);
+        toastMessage("Error fetching Orders", false);
+        console.error("Error fetching Orders:", error);
       }
     };
 
     fetchOrders();
-  }, []);
+  }, [refreshList]);
 
   //open confirmation modal and set the deleted Item
   // to be deleted when the user confirms the deletion
@@ -67,29 +69,33 @@ const Orders = () => {
   };
 
   //Confirm the order and save it to the database
-  const handleSubmitOrderList = async () => {
-    // // construct the final order list
-    // const finalOrderList = {
-    //   delivered: confirmCheckbox.delivered,
-    //   paid: confirmCheckbox.orderPaid,
-    //   updatedBy: loggedInUser.id,
-    // };
-    // try {
-    //   const res = await axios.post("http://localhost:5000/orders/", {
-    //     ...finalOrderList,
-    //   });
-    //   if (res.status === 200 || res.status === 201) {
-    //     //display toast message
-    //     toastMessage(`Order to updated`);
-    //     setOrderList([]);
-    //     //close modal
-    //     setModal(false);
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    //   toastMessage(`Error Submitting your Order`);
-    // }
-    // console.log(finalOrderList);
+  const updateOrderStatus = async () => {
+    // construct the final order list
+    const finalOrderList = {
+      delivered: confirmCheckbox.delivered,
+      paid: confirmCheckbox.orderPaid,
+    };
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/orders/${selectedOrderId}`,
+        {
+          ...finalOrderList,
+        },
+      );
+      if (res.status === 200 || res.status === 201) {
+        //display toast message
+        toastMessage(`Order updated`);
+        setSelectedOrderId("");
+        //refresh the order list
+        setRefreshList(!refreshList);
+        //close modal
+        setModal(false);
+      }
+    } catch (err) {
+      console.log(err);
+      toastMessage(`Error Submitting your Order`);
+    }
+    console.log(finalOrderList);
     console.log(confirmCheckbox, selectedOrderId);
   };
 
@@ -210,7 +216,7 @@ const Orders = () => {
         <OrderModal
           openModal={modal}
           closeModal={() => setModal(false)}
-          confirmFunction={() => handleSubmitOrderList()}
+          confirmFunction={() => updateOrderStatus()}
           orderList={orderList}
           totalOrder={totalOrder}
           customerName={customerName}

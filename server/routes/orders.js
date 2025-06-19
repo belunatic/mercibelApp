@@ -8,8 +8,8 @@ const orderController = require("../controllers/orderController");
 router.get("/", ensureAuth, orderController.getAllOrder);
 //Create a Order
 router.post("/", ensureAuth, orderController.newOrder);
-// //Edit a Order
-// router.put("/:id", ensureAuth, orderController.editProduct);
+//Edit a Order
+router.put("/:id", ensureAuth, orderController.updateOrder);
 // //Delete a Order
 // router.delete("/:id", ensureAuth, orderController.deleteProduct);
 // //Get a Order by ID
