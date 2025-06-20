@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import ToastUtil from "../../util/ToastUtil";
 import axios from "axios";
 import { UseAuthContext } from "../../context/AuthContext";
-import OrderListDisplay from "../../components/OrderListDisplay";
 import OrderModal from "../../util/OrderModal";
+import AddItemButton from "../../util/AddItemButton";
 
 const Orders = () => {
   const { toastMessage } = UseAuthContext();
@@ -227,7 +227,10 @@ const Orders = () => {
       <div className="mx-auto w-full px-2 sm:px-8 lg:px-10 dark:bg-gray-800 dark:text-white">
         {loading ? <p>Loading</p> : displayOrder()}
       </div>
+      {/* display the toast message*/}
       <ToastUtil />
+      {/* display the add button */}
+      <AddItemButton linkTo="/placeOrder" title="Place Order" />
     </>
   );
 };
