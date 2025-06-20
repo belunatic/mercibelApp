@@ -221,7 +221,7 @@ const Customers = () => {
       {/* display the toast message */}
       <ToastUtil />
       {/* display the add button */}
-      <AddItemButton linkTo="/addCustomer" title="Customer" />
+      <AddItemButton linkTo="/addCustomer" title="Add Customer" />
     </>
   );
 };
