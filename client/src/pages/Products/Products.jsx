@@ -152,7 +152,7 @@ const Products = () => {
       {/* display the toast message */}
       <ToastUtil />
       {/* display the add button */}
-      <AddItemButton linkTo="/addProduct" title="Product" />
+      <AddItemButton linkTo="/addProduct" title="Add Product" />
     </>
   );
 };
