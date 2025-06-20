@@ -21,7 +21,7 @@ const AddItem = ({ linkTo, title }) => {
             />
           </svg>
           <span className="collapse h-0 w-0 transition-all duration-0 group-hover:visible group-hover:w-auto">
-            {`Add ${title}`}
+            {`${title}`}
           </span>
         </button>
       </NavLink>
