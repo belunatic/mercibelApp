@@ -1,7 +1,37 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 const OrdersTable = ({ orders, openModal }) => {
+  const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const [dataToDisplay, setDataToDisplay] = useState([]);
+  const TOTAL_VALUES_PER_PAGE = 5;
+
+  //set up the initial table display
+  useEffect(() => {
+    setDataToDisplay(orders.slice(0, TOTAL_VALUES_PER_PAGE));
+    console.log(dataToDisplay);
+  }, []);
+
+  const goOnPrevPage = () => {
+    if (currentPageNumber === 1) return;
+    setCurrentPageNumber((prev) => prev - 1);
+  };
+
+  const goOnNextPage = () => {
+    if (currentPageNumber === orders.length / TOTAL_VALUES_PER_PAGE) return;
+    setCurrentPageNumber((prev) => prev + 1);
+  };
+  const handleSelectChange = (e) => {
+    setCurrentPageNumber(e.target.value);
+  };
+
+  //next page and prev page useEffect
+  useEffect(() => {
+    const start = (currentPageNumber - 1) * TOTAL_VALUES_PER_PAGE;
+    const end = currentPageNumber * TOTAL_VALUES_PER_PAGE;
+    setDataToDisplay(orders.slice(start, end));
+  }, [currentPageNumber]);
+
   return (
     <div>
       <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
@@ -20,7 +50,7 @@ const OrdersTable = ({ orders, openModal }) => {
           </tr>
         </thead>
         <tbody className="bg-white dark:bg-gray-800">
-          {orders.map((order, idx) => (
+          {dataToDisplay.map((order, idx) => (
             <tr
               key={order._id || idx}
               className="border-b dark:border-gray-700"
@@ -109,6 +139,25 @@ const OrdersTable = ({ orders, openModal }) => {
           ))}
         </tbody>
       </table>
+      <div id="page-no-dropdown">
+        {/*select page to display*/}
+        <select
+          name="page-number"
+          onChange={handleSelectChange}
+          value={currentPageNumber}
+        >
+          {Array.from(Array(orders.length / TOTAL_VALUES_PER_PAGE))
+            .map((e, i) => i + 1)
+            .map((val) => {
+              return <option key={val}>{val}</option>;
+            })}
+        </select>
+      </div>
+      {/*next & prev button*/}
+      <div id="btn-container">
+        <button onClick={goOnPrevPage}>Prev</button>
+        <button onClick={goOnNextPage}>Next</button>
+      </div>
     </div>
   );
 };
