@@ -139,12 +139,16 @@ const OrdersTable = ({ orders, openModal }) => {
           ))}
         </tbody>
       </table>
-      <div id="page-no-dropdown">
+      <div
+        id="page-no-dropdown"
+        className="mt-4 flex items-center justify-end gap-x-2"
+      >
         {/* Select page to display */}
         <select
           name="page-number"
           onChange={handleSelectChange}
           value={currentPageNumber}
+          className="block w-auto rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 shadow-sm focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
         >
           {/* Array.from(items, mapFn */}
           {Array.from(
@@ -156,9 +160,19 @@ const OrdersTable = ({ orders, openModal }) => {
             ),
           )}
         </select>
-        <div id="btn-container">
-          <button onClick={goOnPrevPage}>Prev</button>
-          <button onClick={goOnNextPage}>Next</button>
+        <div id="btn-container" className="flex gap-2">
+          <button
+            className="cursor-pointer bg-green-700 px-3 py-2 font-bold text-white shadow-lg hover:gap-2 hover:bg-green-600"
+            onClick={goOnPrevPage}
+          >
+            Prev
+          </button>
+          <button
+            className="cursor-pointer bg-green-700 px-3 py-2 font-bold text-white shadow-lg hover:gap-2 hover:bg-green-600"
+            onClick={goOnNextPage}
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>
