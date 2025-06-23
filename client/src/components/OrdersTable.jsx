@@ -140,28 +140,30 @@ const OrdersTable = ({ orders, openModal }) => {
         </tbody>
       </table>
       <div id="page-no-dropdown">
-        {/*select page to display*/}
+        {/* Select page to display */}
         <select
           name="page-number"
           onChange={handleSelectChange}
           value={currentPageNumber}
         >
-          {Array.from(Array(orders.length / TOTAL_VALUES_PER_PAGE))
-            .map((e, i) => i + 1)
-            .map((val) => {
-              return <option key={val}>{val}</option>;
-            })}
+          {/* Array.from(items, mapFn */}
+          {Array.from(
+            { length: Math.ceil(orders.length / TOTAL_VALUES_PER_PAGE) },
+            (_, i) => (
+              <option key={i + 1} value={i + 1}>
+                {i + 1}
+              </option>
+            ),
+          )}
         </select>
-      </div>
-      {/*next & prev button*/}
-      <div id="btn-container">
-        <button onClick={goOnPrevPage}>Prev</button>
-        <button onClick={goOnNextPage}>Next</button>
+        <div id="btn-container">
+          <button onClick={goOnPrevPage}>Prev</button>
+          <button onClick={goOnNextPage}>Next</button>
+        </div>
       </div>
     </div>
   );
 };
-
 OrdersTable.PropTypes = {
   orders: PropTypes.array.isRequired,
   openModal: PropTypes.func.isRequired,
