@@ -167,12 +167,16 @@ const OrdersTable = ({ orders, openModal }) => {
           >
             Prev
           </button>
-          <button
-            className="cursor-pointer bg-green-700 px-3 py-2 font-bold text-white shadow-lg hover:gap-2 hover:bg-green-600"
-            onClick={goOnNextPage}
-          >
-            Next
-          </button>
+          {dataToDisplay.length === TOTAL_VALUES_PER_PAGE ? (
+            <button
+              className="cursor-pointer bg-green-700 px-3 py-2 font-bold text-white shadow-lg hover:gap-2 hover:bg-green-600"
+              onClick={goOnNextPage}
+            >
+              Next
+            </button>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>
