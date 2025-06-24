@@ -40,13 +40,12 @@ const OrdersTable = ({ orders, openModal }) => {
             <th className="w-2/6 px-4 py-2 text-left text-xl font-semibold">
               Customer
             </th>
-            <th className="w-1/6 px-4 py-2 text-xl font-semibold">Paid</th>
-            <th className="w-1/6 px-4 py-2 text-xl font-semibold">Delivered</th>
+            <th className="w-1/6 px-4 py-2 text-xl font-semibold">Status</th>
             <th className="w-1/6 px-4 py-2 text-xl font-semibold">Total</th>
             <th className="w-1/6 px-4 py-2 text-xl font-semibold">
               Order Date
             </th>
-            <th className="w-1/6 px-4 py-2 text-xl font-semibold"></th>
+            <th className="w-1/6 px-4 py-2 text-xl font-semibold">Action</th>
           </tr>
         </thead>
         <tbody className="bg-white dark:bg-gray-800">
@@ -57,62 +56,75 @@ const OrdersTable = ({ orders, openModal }) => {
             >
               <td className="px-4 py-2 font-semibold">{order.customerName}</td>
               <td className="px-4 py-2 text-center">
-                {!order.paid ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="red"
-                    className="mx-auto size-6"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="green"
-                    className="mx-auto size-6"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                )}
-              </td>
-              <td className="px-4 py-2 text-center">
-                {!order.delivered ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="red"
-                    className="mx-auto size-6"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="green"
-                    className="mx-auto size-6"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                )}
+                <div className="flex flex-col gap-x-1 md:flex-row">
+                  {!order.paid ? (
+                    <p className="flex w-auto items-center justify-start gap-2 rounded-full border-2 border-red-600 p-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="red"
+                        className="size-6 w-auto"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      Paid
+                    </p>
+                  ) : (
+                    <p className="flex w-auto items-center justify-start gap-2 rounded-full border-2 border-green-600 p-2 text-sm md:text-base">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="green"
+                        className="size-6 w-auto"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      Paid
+                    </p>
+                  )}
+
+                  {!order.delivered ? (
+                    <p className="flex w-auto items-center justify-start gap-2 rounded-full border-2 border-red-600 p-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="red"
+                        className="size-6 w-auto"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      Delivered
+                    </p>
+                  ) : (
+                    <p className="flex w-auto items-center justify-start gap-2 rounded-full border-2 border-green-600 p-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="green"
+                        className="size-6 w-auto"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      Delivered
+                    </p>
+                  )}
+                </div>
               </td>
               <td className="px-4 py-2 text-center font-semibold">
                 {order.total}
@@ -161,12 +173,16 @@ const OrdersTable = ({ orders, openModal }) => {
           )}
         </select>
         <div id="btn-container" className="flex gap-2">
-          <button
-            className="cursor-pointer bg-green-700 px-3 py-2 font-bold text-white shadow-lg hover:gap-2 hover:bg-green-600"
-            onClick={goOnPrevPage}
-          >
-            Prev
-          </button>
+          {currentPageNumber !== 1 ? (
+            <button
+              className="cursor-pointer bg-green-700 px-3 py-2 font-bold text-white shadow-lg hover:gap-2 hover:bg-green-600"
+              onClick={goOnPrevPage}
+            >
+              Prev
+            </button>
+          ) : (
+            ""
+          )}
           {dataToDisplay.length === TOTAL_VALUES_PER_PAGE ? (
             <button
               className="cursor-pointer bg-green-700 px-3 py-2 font-bold text-white shadow-lg hover:gap-2 hover:bg-green-600"
