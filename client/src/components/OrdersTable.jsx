@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const OrdersTable = ({ orders, openModal }) => {
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
   const [dataToDisplay, setDataToDisplay] = useState([]);
-  const TOTAL_VALUES_PER_PAGE = 5;
+  const TOTAL_VALUES_PER_PAGE = 10;
 
   //set up the initial table display
   useEffect(() => {
