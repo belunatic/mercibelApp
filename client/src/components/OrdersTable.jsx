@@ -71,14 +71,14 @@ const OrdersTable = ({ orders, openModal }) => {
                   </div>
                   <div className="flex gap-x-2">
                     {order.paid ? (
-                      <span className="text-green-800"> Paid</span>
+                      <span className="text-green-500"> Paid</span>
                     ) : (
-                      <span className="text-red-800">Not Paid</span>
+                      <span className="text-red-500">Not Paid</span>
                     )}
                     {order.delivered ? (
-                      <span className="text-green-800"> Delivered</span>
+                      <span className="text-green-500"> Delivered</span>
                     ) : (
-                      <span className="text-red-800">Not Delivered</span>
+                      <span className="text-red-500">Not Delivered</span>
                     )}
                   </div>
                   <div>
