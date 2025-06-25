@@ -40,12 +40,16 @@ const OrdersTable = ({ orders, openModal }) => {
             <th className="w-2/6 px-4 py-2 text-left text-xl font-semibold">
               Customer
             </th>
-            <th className="w-1/6 px-4 py-2 text-xl font-semibold">Status</th>
+            <th className="hidden w-1/6 px-4 py-2 text-xl font-semibold md:block">
+              Status
+            </th>
             <th className="w-1/6 px-4 py-2 text-xl font-semibold">Total</th>
-            <th className="w-1/6 px-4 py-2 text-xl font-semibold">
+            <th className="hidden w-1/6 px-4 py-2 text-xl font-semibold md:block">
               Order Date
             </th>
-            <th className="w-1/6 px-4 py-2 text-xl font-semibold">Action</th>
+            <th className="hidden w-1/6 px-4 py-2 text-xl font-semibold md:block">
+              Action
+            </th>
           </tr>
         </thead>
         <tbody className="bg-white dark:bg-gray-800">
@@ -54,8 +58,41 @@ const OrdersTable = ({ orders, openModal }) => {
               key={order._id || idx}
               className="border-b dark:border-gray-700"
             >
-              <td className="px-4 py-2 font-semibold">{order.customerName}</td>
-              <td className="px-4 py-2 text-center">
+              <td className="px-4 py-2 font-semibold">
+                {order.customerName}
+                {/*mobile view*/}
+                <div className="flex flex-col text-sm md:hidden">
+                  <div>
+                    <p>Invoice: {order.orderNumber}</p>
+                    <p>
+                      Date:
+                      {new Date(order.createdAt).toLocaleDateString("en-GB")}
+                    </p>
+                  </div>
+                  <div className="flex gap-x-2">
+                    {order.paid ? (
+                      <span className="text-green-800"> Paid</span>
+                    ) : (
+                      <span className="text-red-800">Not Paid</span>
+                    )}
+                    {order.delivered ? (
+                      <span className="text-green-800"> Delivered</span>
+                    ) : (
+                      <span className="text-red-800">Not Delivered</span>
+                    )}
+                  </div>
+                  <div>
+                    <span
+                      className="cursor-pointer text-blue-800 underline"
+                      onClick={(e) => openModal(e, order)}
+                    >
+                      {" "}
+                      Edit
+                    </span>
+                  </div>
+                </div>
+              </td>
+              <td className="hidden px-4 py-2 text-center md:block">
                 <div className="flex flex-col gap-x-1 md:flex-row">
                   {!order.paid ? (
                     <p className="flex w-auto items-center justify-start gap-2 rounded-full border-2 border-red-600 p-2">
@@ -129,12 +166,12 @@ const OrdersTable = ({ orders, openModal }) => {
               <td className="px-4 py-2 text-center font-semibold">
                 {order.total}
               </td>
-              <td className="px-4 py-2">
+              <td className="hidden px-4 py-2 md:block">
                 {order.createdAt
                   ? new Date(order.createdAt).toLocaleDateString("en-GB")
                   : ""}
               </td>
-              <td className="px-4 py-2 text-center">
+              <td className="hidden px-4 py-2 text-center md:block">
                 <button>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
