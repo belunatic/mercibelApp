@@ -40,14 +40,14 @@ const OrdersTable = ({ orders, openModal }) => {
             <th className="w-2/6 px-4 py-2 text-left text-xl font-semibold">
               Customer
             </th>
-            <th className="hidden w-1/6 px-4 py-2 text-xl font-semibold md:block">
+            <th className="hidden w-1/6 px-4 py-2 text-xl font-semibold md:table-cell">
               Status
             </th>
             <th className="w-1/6 px-4 py-2 text-xl font-semibold">Total</th>
-            <th className="hidden w-1/6 px-4 py-2 text-xl font-semibold md:block">
-              Order Date
+            <th className="hidden w-1/6 px-4 py-2 text-xl font-semibold md:table-cell">
+              Date
             </th>
-            <th className="hidden w-1/6 px-4 py-2 text-xl font-semibold md:block">
+            <th className="hidden w-1/6 px-4 py-2 text-xl font-semibold md:table-cell">
               Action
             </th>
           </tr>
@@ -91,7 +91,7 @@ const OrdersTable = ({ orders, openModal }) => {
                   </div>
                 </div>
               </td>
-              <td className="hidden px-4 py-2 text-center md:block">
+              <td className="hidden px-4 py-2 text-center md:table-cell">
                 <div className="flex flex-col gap-x-1 md:flex-row">
                   {!order.paid ? (
                     <p className="flex w-auto items-center justify-start gap-2 rounded-full border-2 border-red-600 p-2">
@@ -165,12 +165,12 @@ const OrdersTable = ({ orders, openModal }) => {
               <td className="px-4 py-2 text-center font-semibold">
                 {order.total}
               </td>
-              <td className="hidden px-4 py-2 md:block">
+              <td className="hidden px-4 py-2 text-center md:table-cell">
                 {order.createdAt
                   ? new Date(order.createdAt).toLocaleDateString("en-GB")
                   : ""}
               </td>
-              <td className="hidden px-4 py-2 text-center md:block">
+              <td className="hidden px-4 py-2 text-center md:table-cell">
                 <button>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -189,7 +189,7 @@ const OrdersTable = ({ orders, openModal }) => {
       </table>
       <div
         id="page-no-dropdown"
-        className="mt-4 flex items-center justify-end gap-x-2"
+        className="mt-4 flex items-center justify-start gap-x-2"
       >
         {/* Select page to display */}
         <select
@@ -219,7 +219,7 @@ const OrdersTable = ({ orders, openModal }) => {
           ) : (
             ""
           )}
-          {dataToDisplay.length === TOTAL_VALUES_PER_PAGE ? (
+          {orders.length > TOTAL_VALUES_PER_PAGE ? (
             <button
               className="cursor-pointer bg-green-700 px-3 py-2 font-bold text-white shadow-lg hover:gap-2 hover:bg-green-600"
               onClick={goOnNextPage}
