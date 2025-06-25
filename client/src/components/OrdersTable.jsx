@@ -86,7 +86,6 @@ const OrdersTable = ({ orders, openModal }) => {
                       className="cursor-pointer text-blue-800 underline"
                       onClick={(e) => openModal(e, order)}
                     >
-                      {" "}
                       Edit
                     </span>
                   </div>
