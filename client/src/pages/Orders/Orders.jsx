@@ -9,9 +9,9 @@ import OrdersTable from "../../components/OrdersTable";
 const Orders = () => {
   const { toastMessage } = UseAuthContext();
   const [orders, setOrder] = useState([]);
+  //use to display the orderTable Component
+  //also refresh the orderTable Component when update occurs
   const [loading, setLoading] = useState(true);
-  //a variable to refresh list after the update has occurred
-  const [refreshList, setRefreshList] = useState(false);
   //state for the modal
   const [selectedOrderId, setSelectedOrderId] = useState("");
   const [orderList, setOrderList] = useState([]);
@@ -39,7 +39,7 @@ const Orders = () => {
     };
 
     fetchOrders();
-  }, [refreshList]);
+  }, [loading]);
 
   //open confirmation modal and set the deleted Item
   // to be deleted when the user confirms the deletion
@@ -87,10 +87,11 @@ const Orders = () => {
         //display toast message
         toastMessage(`Order updated`);
         setSelectedOrderId("");
-        //refresh the order list
-        setRefreshList(!refreshList);
         //close modal
         setModal(false);
+        //this might not be necessary
+        //but this is meant to refresh the orders if successive updated
+        setLoading(true);
       }
     } catch (err) {
       console.log(err);
