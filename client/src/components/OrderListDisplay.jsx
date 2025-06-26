@@ -30,6 +30,7 @@ const OrderListDisplay = ({
                     onChange={(e) => handleProductCount(e, index, item)}
                     value={item.count || 0}
                     className="w-[100px] border-1 ps-2"
+                    min="1"
                   />
                   <a
                     onClick={() => handleDeleteProductItem(item.id)}
