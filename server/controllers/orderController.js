@@ -31,4 +31,12 @@ module.exports = {
 
 		res.json({ msg: "Order updated", order: updatedOrder });
 	}),
+	getAOrder: asyncHandler(async (req, res) => {
+		const { id } = req.params;
+		const order = await Order.findById(id);
+		if (!order) {
+			return res.status(404).json({ msg: "Order not found" });
+		}
+		res.json(order);
+	}),
 };
