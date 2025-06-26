@@ -14,6 +14,7 @@ import AddCustomers from "./pages/Customers/AddCustomer";
 import EditCustomers from "./pages/Customers/EditCustomer";
 import Orders from "./pages/Orders/Orders";
 import PlaceOrder from "./pages/Orders/PlaceOrder";
+import OrderInvoice from "./pages/Orders/OrderInvoice";
 
 const App = () => {
   const { loggedInUser, showRegister } = UseAuthContext();
@@ -38,6 +39,7 @@ const App = () => {
               {/* Order Routes */}
               <Route path="/orders" element={<Orders />} />
               <Route path="/placeOrder" element={<PlaceOrder />} />
+              <Route path="/orderInvoice" element={<OrderInvoice />} />
               {/* end of Customer routes */}
               <Route path="/login" element={<Login />} />
             </Routes>
