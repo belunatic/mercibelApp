@@ -34,6 +34,7 @@ module.exports = {
 	getAOrder: asyncHandler(async (req, res) => {
 		const { id } = req.params;
 		const order = await Order.findById(id);
+		console.log("This si the order", order);
 		if (!order) {
 			return res.status(404).json({ msg: "Order not found" });
 		}
