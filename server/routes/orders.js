@@ -12,7 +12,7 @@ router.post("/", ensureAuth, orderController.newOrder);
 router.put("/:id", ensureAuth, orderController.updateOrder);
 // //Delete a Order
 // router.delete("/:id", ensureAuth, orderController.deleteProduct);
-// //Get a Order by ID
-// router.get("/:id", ensureAuth, orderController.getProductById);
+//Get a Order by ID
+router.get("/invoice/:id", ensureAuth, orderController.getAOrder);
 
 module.exports = router;
