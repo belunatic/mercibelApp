@@ -1,9 +1,12 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const OrderInvoice = () => {
   const [invoiceData, setInvoiceData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  //element to print
+  const invoicePrintRef = useRef(null);
 
   useEffect(() => {
     const fetchInvoice = async () => {
@@ -25,7 +28,10 @@ const OrderInvoice = () => {
   //Display the Item bought
   const displayOrderItem = () => {
     return (
-      <div className="space-y-4 rounded-lg border border-gray-200 p-4 dark:border-neutral-700">
+      <div
+        className="space-y-4 rounded-lg border border-gray-200 p-4 dark:border-neutral-700"
+        id="invoice_to_print"
+      >
         <div className="hidden sm:grid sm:grid-cols-5">
           <div className="text-xs font-medium text-gray-500 uppercase sm:col-span-2 dark:text-neutral-500">
             Item
@@ -97,7 +103,10 @@ const OrderInvoice = () => {
         <div className="mx-auto my-4 max-w-[85rem] px-4 sm:my-10 sm:px-6 lg:px-8">
           <div className="mx-auto sm:w-11/12 lg:w-3/4">
             {/* <!-- Card --> */}
-            <div className="flex flex-col rounded-xl bg-white p-4 shadow-md sm:p-10 dark:bg-neutral-800">
+            <div
+              className="flex flex-col rounded-xl bg-white p-4 shadow-md sm:p-10 dark:bg-neutral-800"
+              ref={invoicePrintRef}
+            >
               {/* <!-- Grid --> */}
               <div className="flex justify-between">
                 <div>
@@ -118,7 +127,7 @@ const OrderInvoice = () => {
                     Invoice #
                   </h2>
                   <span className="mt-1 block text-gray-500 dark:text-neutral-500">
-                    3682303
+                    {invoiceData.orderNumber || "0001"}
                   </span>
 
                   <address className="mt-4 text-gray-800 not-italic dark:text-neutral-200">
