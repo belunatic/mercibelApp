@@ -253,16 +253,16 @@ const OrderInvoice = () => {
                 </p>
                 <div className="mt-2">
                   <p className="block text-sm font-medium text-gray-800 dark:text-neutral-200">
-                    example@site.com
+                    info@mercibel.co.tz
                   </p>
                   <p className="block text-sm font-medium text-gray-800 dark:text-neutral-200">
-                    +1 (062) 109-9222
+                    +255 754 700 688
                   </p>
                 </div>
               </div>
 
               <p className="mt-5 text-sm text-gray-500 dark:text-neutral-500">
-                © 2022 Preline.
+                © {new Date().getFullYear()} Mercibel Products.
               </p>
             </div>
             {/* <!-- End Card --> */}
