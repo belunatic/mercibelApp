@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState, useEffect, useRef } from "react";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf/dist/jspdf.es.min.js";
 
 const OrderInvoice = () => {
   const [invoiceData, setInvoiceData] = useState([]);
@@ -25,13 +27,46 @@ const OrderInvoice = () => {
     fetchInvoice();
   }, []);
 
+  const handleDownloadPdf = async (e) => {
+    e.preventDefault();
+    console.log("I am here");
+    const element = invoicePrintRef.current;
+    const wasDark = element.classList.contains("dark:bg-neutral-800");
+
+    // 🔁 Temporarily disable dark mode
+    if (wasDark) element.classList.remove("dark:bg-neutral-800");
+
+    // 🖼️ Capture the element with a white background
+    const canvas = await html2canvas(element, {
+      scale: 2,
+      backgroundColor: "#ffffff",
+      useCORS: true,
+    });
+
+    // 🧾 Generate PDF
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF("p", "mm", "a4");
+
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+
+    const imgProps = pdf.getImageProperties(imgData);
+    const imgWidth = pdfWidth;
+    const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
+
+    const yOffset = (pdfHeight - imgHeight) / 2;
+
+    pdf.addImage(imgData, "PNG", 0, yOffset, imgWidth, imgHeight);
+    pdf.save("document.pdf");
+
+    //  Restore dark mode if it was active
+    if (wasDark) element.classList.add("dark:bg-neutral-800");
+  };
+
   //Display the Item bought
   const displayOrderItem = () => {
     return (
-      <div
-        className="space-y-4 rounded-lg border border-gray-200 p-4 dark:border-neutral-700"
-        id="invoice_to_print"
-      >
+      <div className="mt-4 space-y-4 rounded-lg border border-gray-200 p-4 dark:border-neutral-700">
         <div className="hidden sm:grid sm:grid-cols-5">
           <div className="text-xs font-medium text-gray-500 uppercase sm:col-span-2 dark:text-neutral-500">
             Item
@@ -116,7 +151,7 @@ const OrderInvoice = () => {
                     className="size-20 w-auto"
                   />
 
-                  <h1 className="mt-2 text-lg font-semibold text-blue-600 md:text-xl dark:text-white">
+                  <h1 className="mt-2 text-lg font-semibold text-gray-500 md:text-xl dark:text-white">
                     Mercibel Products
                   </h1>
                 </div>
@@ -281,6 +316,7 @@ const OrderInvoice = () => {
               <a
                 className="inline-flex items-center gap-x-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-800 shadow-2xs hover:bg-gray-50 focus:bg-gray-50 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-transparent dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
                 href="#"
+                onClick={handleDownloadPdf}
               >
                 <svg
                   className="size-4 shrink-0"
