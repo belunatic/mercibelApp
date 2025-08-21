@@ -8,4 +8,8 @@ export default defineConfig({
   optimizeDeps: {
     include: ["jspdf"],
   },
+  server: {
+    host: true,
+    port: 5173,
+  },
 });
